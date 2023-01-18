@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}
+    500 Error - Server Error
+{% endblock %}
+{% block content %}
+  <div class ="container">
+  <h1>Oh no, a 500 error!</h1>
+      <br>
+      <p>{{ description }}</p>
+      <p>Please use the <a href="contact.html">Contact Page</a> to let me know about it!</p>
+  <p>Go back to sanity by using the navbar above.</p>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}
+    404 Error - Page Not Found
+{% endblock %}
+{% block content %}
+  <div class ="container">
+  <h1>Oh no, a 404 error!</h1>
+      <br>
+      <p>{{ description }}</p>
+      <p>It doesn't have its own entry in <a href="https://en.wikipedia.org/wiki/The_Dictionary_of_Imaginary_Places">
+          The Dictionary of Imaginary Places
+      </a>, but it's still as really unreal as really unreal gets.</p>
+  <p>Use the navbar above to get back to somewhere real.</p>
+  </div>
+
+{% endblock %}

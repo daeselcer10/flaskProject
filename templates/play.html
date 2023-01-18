@@ -1,0 +1,272 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- javascript sources for the counter-->
+    <script type="text/javascript" src="/static/js/json-serialization.js"></script>
+<script type="text/javascript" src="/static/js/session.js"></script>
+
+    <!-- js counter stuff i need on this page -->
+    <script type="text/javascript">
+
+
+    // <![CDATA[
+
+// initialize application defaults
+var counter = session.get("counter") || {
+    submit: -1,
+    time: [],
+};
+
+// onload
+window.onload = function() {
+
+	// update previous guesses
+	counter.submit++;
+
+	// update page
+	document.getElementById("guesses").firstChild.nodeValue = counter.submit + " guess" +
+        (counter.submit === 1 ? "" : "es");
+
+	// store value in session
+	session.set("counter", counter);
+
+
+};
+function clearCount() {
+    document.getElementById("guesses").innerText = '0 guesses';
+    session.clear();
+}
+
+// add leading zeros
+function Pad(n) {
+	n = "00" + n;
+	return n.substring(n.length-2);
+}
+// ]]>
+</script>
+
+
+    <div class = "container">
+    <h1>Play Bookshelf</h1>
+        <br/>
+        <p>What's on your bookshelf today? Here are your six clues for <b>{{ date|puredatefilter }}</b>.
+        <p><b>Important Note:</b> Capitalize the first letter of <em>every word</em> in the title.</p>
+    </div>
+<!-- collapsible rule container -->
+    <div class = "container"><button class="btn btn-outline-info" type="button" data-toggle="collapse"
+                                     data-target="#collapseRules" aria-expanded="false" aria-controls="collapseRules">
+    Read the Rules and Tips (Seriously)
+    </button>
+    <div class="collapse" id="collapseRules">
+  <div class="card card-body">
+      <p>1. The clues are collapsible. Click to reveal them. Look at Clue 1, then type a guess. Look at Clue 2, then type a guess.
+      And so on and so forth.<br>
+      2. The clues get easier as you go. Clue 1 is the hardest; Clue 6 is the easiest.<br>
+      3. Spelling absolutely counts.<br>
+      4. Capitalize the first letter of every word in the title. Yes, even if it's not that way in the actual title.
+      The code looks for an exact match, so this is an attempt to be fair.<br>
+      5. Do not use quotation marks.<br>
+      6. If a book's title includes an apostrophe, include it. "Gerald's Game" would be correct; "Geralds Game" would be incorrect.<br>
+      7. In fact, include all punctuation. The book "O Pioneers!" has an exclamation point, so you need one too!<br>
+      8. Except quotation marks. Don't include those. We hate them.<br>
+      9. You have unlimited guesses.<br>
+      10. Answers will always be a book's full title. So "Left Hand Of Darkness" would be incorrect, but
+      "The Left Hand Of Darkness" would be correct.<br>
+      11. Numbers should be treated as they were in the original title. "1984" is correct; "Nineteen Eighty Four" is not.<br>
+      12. Answers do not repeat.<br>
+      13. All the books are narrative fiction, epic poems,
+      plays, or memoirs. There are no scientific texts or works of philosophy.<br>
+      14. Make sure you have the right title. "Pinocchio" isn't a book, but "The Adventures Of Pinocchio" is. So if you're
+      super sure about an answer, ask yourself if the book's *actual* title is different from what it's usually called.<br>
+          15. The game selects a new book every 24 hours, at midnight Central Standard Time.</p>
+  </div>
+    </div>
+
+</div>
+    <br>
+    <!-- guesses displayed here-->
+<div class = "container">
+<p>You have made <strong><span id="guesses">0 </span></strong> today.</p>
+
+    <!-- clear button-->
+    <p>Remember to click <button onclick='clearCount();' class="btn btn-outline-secondary btn-sm">here</button> to reset guesses
+    when it's time to play a new game.</p>
+</div>
+    <br>
+
+<!-- type and check answers form-->
+    <div class="container">
+                <form action="/play" method ="POST">
+                    <div class = "form-group">
+                        <label><b>What's on your Bookshelf today?</b></label><br/>
+                        <label>
+                            <input class ="form control" type="text" name="guess" placeholder="Type your guess here!">
+                        </label>
+                    </div>
+
+                    <div class="container>"><button type="submit" class="btn btn-secondary" id="submit">Check Answer
+                    </button></div>
+                </form>
+            </div>
+    <!-- correct/incorrect messages flash here-->
+    <p> <div class ="container">
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                               <div class="alert alert-{{ category }}" role="alert">
+                                   <span>{{ message }} </span></div>
+                              {% if category == "success" %}
+  <div>
+    <p><b>Ding ding!</b> You guessed the right answer in <span id="shared-guesses"></span> guesses. Click
+        below to share your score!</p>
+  </div>
+
+  <script>
+   window.addEventListener('load', function() {
+      document.getElementById('shared-guesses').innerText = counter.submit;
+      document.getElementById('sharebox').value = `I found the book on today's shelf in ${counter.submit} guesses! https://www.bookshelfthegame.com/play`;
+    });
+
+  </script>
+{% endif %}
+
+                            {% endfor %}
+                        {% endif %}
+                {% endwith %}
+      </div>
+<br>
+    <!-- sharing score; previous block of code edits the copy clipboard stuff below-->
+    <div class = "container">
+    <input type="text" readonly="readonly" id="sharebox" value="You found the book on today's shelf in NUMBER guesses!
+    https://www.bookshelfthegame.com/play"
+           onclick="copyToClipboard(this);">
+        <div id="copyStatus" style="display: none;"><p>Score copied successfully.</p></div>
+    <script type="text/javascript">
+        function copyToClipboard(element) {
+            element.select();
+            if(document.execCommand('copy')) {
+                document.getElementById('copyStatus').style.display = '';
+                setTimeout(function() {
+                    document.getElementById('copyStatus').style.display = 'none';
+                }, 5000);
+            }
+        }
+    </script>
+    </div>
+    <br>
+    <div class = "container">
+    <div class="shareon">
+    <a class="twitter"></a>
+    <a class="facebook"></a>
+    <a class="reddit"></a>
+    <a class="pinterest"></a>
+    <a class = "mastodon"></a>
+    <a class="linkedin"></a>
+    <a class="whatsapp"></a>
+        <a class="telegram"></a>
+    </div></div><br/>
+
+    <br>
+    <br>
+<!-- collapsible clues begin here-->
+<div class="container">
+    <div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-light collapsed" type="button" data-toggle="collapse"
+                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          View Clue #1
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+          <p>{{ clueone }}</p>
+
+      </div>
+    </div>
+
+
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-light collapsed" type="button" data-toggle="collapse"
+                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          View Clue #2
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+          <p>{{ cluetwo }}</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button class="btn btn-light collapsed" type="button" data-toggle="collapse"
+                data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          View Clue #3
+        </button>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+          <p>{{ books.2.2 }}</p>
+      </div>
+  </div>
+</div>
+
+    <div class="card">
+    <div class="card-header" id="headingFour">
+      <h2 class="mb-0">
+        <button class="btn btn-light collapsed" type="button" data-toggle="collapse"
+                data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          View Clue #4
+        </button>
+      </h2>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+      <div class="card-body">
+          <p>{{ books.2.3 }}</p>
+    </div>
+  </div>
+
+<div class="card">
+    <div class="card-header" id="headingFive">
+      <h2 class="mb-0">
+        <button class="btn btn-light collapsed" type="button" data-toggle="collapse"
+                data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+          View Clue #5
+        </button>
+      </h2>
+    </div>
+    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+      <div class="card-body">
+          <p>{{ books.2.4 }}</p>
+    </div>
+  </div>
+
+    <div class="card">
+    <div class="card-header" id="headingSix">
+      <h2 class="mb-0">
+        <button class="btn btn-light collapsed" type="button" data-toggle="collapse"
+                data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+          View Clue #6
+        </button>
+      </h2>
+    </div>
+    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+      <div class="card-body">
+          <p>{{ books.2.5 }}</p>
+    </div>
+  </div>
+</div>
+    </div>
+    </div>
+  </div>
+
+{% endblock %}
