@@ -7,7 +7,24 @@
   <h1>Contact Me</h1>
       <br>
       <p>{{ description }}</p>
-      <p><b>Email</b> me at <a href="mailto:bookshelfthegame@gmail.com">bookshelfthegame@gmail.com</a></p>
+      <p><b>Email</b> me at <a href="mailto:bookshelfthegame@gmail.com">bookshelfthegame@gmail.com</a>, or click below to
+      copy the address yourself.</p>
+      <div class = "container">
+    <input type="text" readonly="readonly" id="sharebox" value="bookshelfthegame@gmail.com"
+           onclick="copyToClipboard(this);">
+        <div id="copyStatus" style="display: none;"><p>Copied, now throw it at my window.</p></div>
+    <script type="text/javascript">
+        function copyToClipboard(element) {
+            element.select();
+            if(document.execCommand('copy')) {
+                document.getElementById('copyStatus').style.display = '';
+                setTimeout(function() {
+                    document.getElementById('copyStatus').style.display = 'none';
+                }, 5000);
+            }
+        }
+    </script></div>
+      <br>
       <p><a href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ" target="_blank">Watch a video about the making of this game.</a></p>
   </div>
 
