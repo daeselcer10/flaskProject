@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
     <!-- javascript sources for the counter-->
-    <script type="text/javascript" src="/static/js/json-serialization.js"></script>
 <script type="text/javascript" src="/static/js/session.js"></script>
+<!-- removed json serialization from here -->
 
     <!-- js counter stuff i need on this page -->
     <script type="text/javascript">
@@ -33,7 +33,7 @@ window.onload = function() {
 };
 function clearCount() {
     document.getElementById("guesses").innerText = '0 guesses';
-    session.clear();
+    session.clear(); //need help here; if i change everything to local storage, how to clear just guesses here?
 }
 
 // add leading zeros
@@ -69,15 +69,16 @@ function Pad(n) {
       7. In fact, include all punctuation. The book "O Pioneers!" has an exclamation point, so you need one too!<br>
       8. Except quotation marks. Don't include those. We hate them.<br>
       9. You have unlimited guesses.<br>
-      10. Answers will always be a book's full title. So "Left Hand Of Darkness" would be incorrect, but
+          10. Guesses display under "My Guesses So Far" as you make them.<br>
+      11. Answers will always be a book's full title. So "Left Hand Of Darkness" would be incorrect, but
       "The Left Hand Of Darkness" would be correct.<br>
-      11. Numbers should be treated as they were in the original title. "1984" is correct; "Nineteen Eighty Four" is not.<br>
-      12. Answers do not repeat.<br>
-      13. All the books are narrative fiction, epic poems,
+      12. Numbers should be treated as they were in the original title. "1984" is correct; "Nineteen Eighty Four" is not.<br>
+      13. Answers do not repeat.<br>
+      14. All the books are narrative fiction, epic poems,
       plays, or memoirs. There are no scientific texts or works of philosophy.<br>
-      14. Make sure you have the right title. "Pinocchio" isn't a book, but "The Adventures Of Pinocchio" is. So if you're
+      15. Make sure you have the right title. "Pinocchio" isn't a book, but "The Adventures Of Pinocchio" is. So if you're
       super sure about an answer, ask yourself if the book's *actual* title is different from what it's usually called.<br>
-          15. The game selects a new book every 24 hours, at midnight Central Standard Time.</p>
+          16. The game selects a new book every 24 hours, at midnight Central Standard Time.</p>
   </div>
     </div>
 
@@ -88,7 +89,7 @@ function Pad(n) {
 <p>You have made <strong><span id="guesses">0 </span></strong> today.</p>
 
     <!-- clear button-->
-    <p>Remember to click <button onclick='clearCount();' class="btn btn-outline-secondary btn-sm">here</button> to reset guesses
+    <p>Remember to click <button onclick='clearCount();' class="btn btn-outline-secondary btn-sm" id="clearly">here</button> to reset guesses
     when it's time to play a new game.</p>
 </div>
     <br>
@@ -107,6 +108,8 @@ function Pad(n) {
                     </button></div>
                 </form>
             </div>
+    <br>
+
     <!-- correct/incorrect messages flash here-->
     <p> <div class ="container">
 
@@ -117,7 +120,7 @@ function Pad(n) {
                                    <span>{{ message }} </span></div>
                               {% if category == "success" %}
   <div>
-    <p><b>Ding ding!</b> You guessed the right answer in <span id="shared-guesses"></span> guesses. Click
+    <p><b>Ding ding!</b> You found the right answer in <span id="shared-guesses"></span> guesses. Click
         below to share your score!</p>
   </div>
 
@@ -168,6 +171,11 @@ function Pad(n) {
     </div></div><br/>
 
     <br>
+      <!-- display guesses here-->
+    <div class="container">
+        <p><b>My Guesses So Far</b></p>
+    <ul id="show_guesses"></ul>
+    </div>
     <br>
 <!-- collapsible clues begin here-->
 <div class="container">
@@ -269,5 +277,10 @@ function Pad(n) {
     </div>
     </div>
   </div>
+  </div></div>
+    <br>
+    <br>
+        <!-- guess display js-->
+<script src="/static/js/guess_display.js"></script>
 
 {% endblock %}

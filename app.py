@@ -2,9 +2,6 @@ from flask import Flask, render_template, request, make_response, redirect, flas
 from flask_bootstrap import Bootstrap4
 from datetime import datetime
 import pytz
-from itertools import cycle
-from schedule import every, repeat, run_pending
-import time
 
 app = Flask(__name__)
 
@@ -26,7 +23,7 @@ class Ans:
 
 # list of answers in order
 ans = Ans([
-    'Pride and Prejudice',
+    'Lolita',
     'Anna Karenina',
 ])
 
@@ -110,6 +107,11 @@ def teapot():
     description = "I'm a lil' teapot, making robot tea! Capitalism, capitalism, you can't catch me!"
     return render_template("teapot.html", description=description)
 
+@app.route('/privacy')
+def privacy():
+    description = "Privacy: it's not just for trees alone in forests."
+    return render_template("privacy.html", description=description)
+
 
 @app.route('/')
 def index():
@@ -138,7 +140,7 @@ def contact():
 @app.route('/support')
 def support():
     description = "If you enjoy Bookshelf, please consider supporting me by buying me a coffee on Ko-Fi!"
-    return render_template("support.html", description = description)
+    return render_template("support.html", description=description)
 
 @app.route('/play', methods=["GET", "POST"])
 def play():

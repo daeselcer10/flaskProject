@@ -10,16 +10,16 @@
       <p><b>Email</b> me at <a href="mailto:bookshelfthegame@gmail.com">bookshelfthegame@gmail.com</a>, or click below to
       copy the address yourself.</p>
       <div class = "container">
-    <input type="text" readonly="readonly" id="sharebox" value="bookshelfthegame@gmail.com"
+    <input type="text" readonly="readonly" id="emailbox" value="bookshelfthegame@gmail.com"
            onclick="copyToClipboard(this);">
-        <div id="copyStatus" style="display: none;"><p>Copied, now throw it at my window.</p></div>
+        <div id="copyEmail" style="display: none;"><p>Copied, now throw it at my window.</p></div>
     <script type="text/javascript">
         function copyToClipboard(element) {
             element.select();
             if(document.execCommand('copy')) {
-                document.getElementById('copyStatus').style.display = '';
+                document.getElementById('copyEmail').style.display = '';
                 setTimeout(function() {
-                    document.getElementById('copyStatus').style.display = 'none';
+                    document.getElementById('copyEmail').style.display = 'none';
                 }, 5000);
             }
         }

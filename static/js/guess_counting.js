@@ -1,23 +1,3 @@
-/**
- * Implements cookie-less JavaScript session variables
- * v1.0
- * Original code by Craig Buckler, optimalworks.net, featured on sitepoint.com
- * Adapted by Dae Selcer for Bookshelf
-*
- * Usage:
- *
- * // store a session value/object
- * Session.set(name, object);
- *
- * // retrieve a session value/object
- * Session.get(name);
- *
- * // clear all session data
- * Session.clear();
- *
- * // dump session data
- * Session.dump();
- */
 
  if (JSON && JSON.stringify && JSON.parse) var session = session || (function () {
 
