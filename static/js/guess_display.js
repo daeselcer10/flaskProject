@@ -7,7 +7,7 @@
 const form = document.querySelector('form');
 const ul = document.getElementById('show_guesses');
 const button = document.getElementById('clearly');
-const input = document.getElementById('guess');
+const input = document.getElementsByName('guess');
 let displayGuesses = localStorage.getItem('my_guesses') ? JSON.parse(localStorage.getItem('my_guesses')) : [];
 
 
@@ -21,10 +21,10 @@ const liMaker = (text) => {
 }
 // this currently does not work
 form.addEventListener('submit', function () {
-  displayGuesses.push(input.value);
+  displayGuesses.push(input[0].value);
   localStorage.setItem('my_guesses', JSON.stringify(displayGuesses));
-  liMaker(input.value);
-  input.value = "";
+  liMaker(input[0].value);
+  input[0].value = "";
   form.submit();
 });
 
