@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-    <!-- javascript sources for the counter-->
-<script type="text/javascript" src="/static/js/session.js"></script>
+    <!-- removed sesssion.js from here -->
+
 <!-- removed json serialization from here -->
 
     <!-- js counter stuff i need on this page -->
@@ -11,29 +11,27 @@
     // <![CDATA[
 
 // initialize application defaults
-var counter = session.get("counter") || {
-    submit: -1,
+let counter = JSON.parse(localStorage.getItem("counter")) || {
+    submit: 0,
     time: [],
 };
 
 // onload
 window.onload = function() {
 
-	// update previous guesses
-	counter.submit++;
-
 	// update page
 	document.getElementById("guesses").firstChild.nodeValue = counter.submit + " guess" +
         (counter.submit === 1 ? "" : "es");
 
 	// store value in session
-	session.set("counter", counter);
+	localStorage.setItem("counter", JSON.stringify(counter));
 
 
 };
 function clearCount() {
     document.getElementById("guesses").innerText = '0 guesses';
-    session.clear(); //need help here; if i change everything to local storage, how to clear just guesses here?
+    counter.submit=0;
+    localStorage.setItem("counter", JSON.stringify(counter)); //need help here; if i change everything to local storage, how to clear just guesses here?
 }
 
 // add leading zeros
@@ -173,7 +171,7 @@ function Pad(n) {
     <br>
       <!-- display guesses here-->
     <div class="container">
-        <p><b>My Guesses So Far</b></p>
+        <p><b>Your Guesses So Far</b></p>
     <ul id="show_guesses"></ul>
     </div>
     <br>

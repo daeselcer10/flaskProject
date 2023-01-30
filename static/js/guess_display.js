@@ -24,8 +24,8 @@ form.addEventListener('submit', function () {
   displayGuesses.push(input[0].value);
   localStorage.setItem('my_guesses', JSON.stringify(displayGuesses));
   liMaker(input[0].value);
-  input[0].value = "";
-  form.submit();
+  counter.submit++;
+  localStorage.setItem("counter", JSON.stringify(counter));
 });
 
 //does this work?
