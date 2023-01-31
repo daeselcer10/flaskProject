@@ -1,14 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-    <!-- removed sesssion.js from here -->
+    <!-- removed sesssion.js from here - don't need it anymore-->
 
-<!-- removed json serialization from here -->
+<!-- removed json serialization from here - don't need anymore-->
 
     <!-- js counter stuff i need on this page -->
     <script type="text/javascript">
-
-
-    // <![CDATA[
 
 // initialize application defaults
 let counter = JSON.parse(localStorage.getItem("counter")) || {
@@ -23,7 +20,7 @@ window.onload = function() {
 	document.getElementById("guesses").firstChild.nodeValue = counter.submit + " guess" +
         (counter.submit === 1 ? "" : "es");
 
-	// store value in session
+	// store value in local storage
 	localStorage.setItem("counter", JSON.stringify(counter));
 
 
@@ -57,7 +54,7 @@ function Pad(n) {
     <div class="collapse" id="collapseRules">
   <div class="card card-body">
       <p>1. The clues are collapsible. Click to reveal them. Look at Clue 1, then type a guess. Look at Clue 2, then type a guess.
-      And so on and so forth.<br>
+      And so on and so forth. Your past guesses display under "Your Guesses So Far."<br>
       2. The clues get easier as you go. Clue 1 is the hardest; Clue 6 is the easiest.<br>
       3. Spelling absolutely counts.<br>
       4. Capitalize the first letter of every word in the title. Yes, even if it's not that way in the actual title.
