@@ -137,6 +137,11 @@ def contact():
     description = "Throw rocks at my window."
     return render_template("contact.html", description=description)
 
+@app.route('/test')
+def test():
+    description="This is a test."
+    return render_template("test.html", description=description)
+
 @app.route('/support')
 def support():
     description = "If you enjoy Bookshelf, please consider supporting me by buying me a coffee on Ko-Fi!"

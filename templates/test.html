@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}
+    Test Page
+{% endblock %}
+{% block content %}
+  <div class ="container">
+  <h1>Test Page</h1>
+      <br>
+      <p>{{ description }}</p>
+
+      <button id="btn-test-set" class="btn btn-outline-info">Set</button>
+		<input id="input-test-set" />
+		<br /><br />
+		<button id="btn-test-get" class="btn btn-outline-warning">Get</button>
+		<div>Value: <span id="test-value"></span></div>
+
+<script>
+
+			const btnSet = document.getElementById("btn-test-set");
+			const btnGet = document.getElementById("btn-test-get");
+			const inputSet = document.getElementById("input-test-set");
+			const valueDisplay = document.getElementById("test-value");
+
+			btnSet.addEventListener("click", () => {
+				setWithExpiry("myKey", inputSet.value, 5000)
+			})
+
+			btnGet.addEventListener("click", () => {
+				const value = getWithExpiry("myKey")
+				valueDisplay.innerHTML = value
+			})
+
+			function setWithExpiry(key, value, ttl) {
+				const now = new Date()
+
+				// `item` is an object which contains the original value
+				// as well as the time when it's supposed to expire
+				const item = {
+					value: value,
+					expiry: now.getTime() + ttl,
+				}
+				localStorage.setItem(key, JSON.stringify(item))
+			}
+
+			function getWithExpiry(key) {
+				const itemStr = localStorage.getItem(key)
+
+				// if the item doesn't exist, return null
+				if (!itemStr) {
+					return null
+				}
+
+				const item = JSON.parse(itemStr)
+				const now = new Date()
+
+				// compare the expiry time of the item with the current time
+				if (now.getTime() > item.expiry) {
+					// If the item is expired, delete the item from storage
+					// and return null
+					localStorage.removeItem(key)
+					return null
+				}
+				return item.value
+			}
+</script>
+  <!-- another option?-->
+      <script>
+  function setWithExpiry(key, value, ttl) {
+	const now = new Date()
+
+	// `item` is an object which contains the original value
+	// as well as the time when it's supposed to expire
+	const item = {
+		value: value,
+		expiry: now.getTime() + ttl,
+	}
+	localStorage.setItem(key, JSON.stringify(item))
+}
+
+function getWithExpiry(key) {
+	const itemStr = localStorage.getItem(key)
+	// if the item doesn't exist, return null
+	if (!itemStr) {
+		return null
+	}
+	const item = JSON.parse(itemStr)
+	const now = new Date()
+	// compare the expiry time of the item with the current time
+	if (now.getTime() > item.expiry) {
+		// If the item is expired, delete the item from storage
+		// and return null
+		localStorage.removeItem(key)
+		return null
+	}
+	return item.value
+}
+  </script>
+  </div>
+
+{% endblock %}

@@ -43,7 +43,9 @@ function Pad(n) {
     <div class = "container">
     <h1>Play Bookshelf</h1>
         <br/>
-        <p>What's on your bookshelf today? Here are your six clues for <b>{{ date|puredatefilter }}</b>.
+        <p>What's on your bookshelf today? Here are your six clues for today.</p>
+        <p>In the Bookshelf library, it is currently: <b>{{ date|datetimefilter }}</b>. A new book is selected every day
+            at<b> X time</b>.</p>
         <p><b>Important Note:</b> Capitalize the first letter of <em>every word</em> in the title.</p>
     </div>
 <!-- collapsible rule container -->
@@ -95,7 +97,7 @@ function Pad(n) {
                     <div class = "form-group">
                         <label><b>What's on your Bookshelf today?</b></label><br/>
                         <label>
-                            <input class ="form control" type="text" name="guess" placeholder="Type your guess here!">
+                            <input class ="form control" type="text" name="guess" autocapitalize="words" placeholder="Type your guess here!">
                         </label>
                     </div>
 
