@@ -2,12 +2,30 @@
 {% block content %}
     <!-- removed sesssion.js from here - don't need it anymore-->
 
-<!-- removed json serialization from here - don't need anymore-->
+<script type ="text/javascript">
+
+// constituting date variables
+const date_now = new Date();
+const date_now_date = date_now.getUTCDate();
+const date_now_hours = date_now.getUTCHours();
+const date_now_month = date_now.getUTCMonth();
+const date_now_year = date_now.getUTCFullYear();
+const jsonDate_now = date_now.toJSON();
+
+
+//setting local storage items for current dates in UTC, and eventually local storage items for guesses too
+localStorage.setItem("date_now", jsonDate_now);
+localStorage.setItem("date_now_date", date_now_date);
+localStorage.setItem("date_now_hours", date_now_hours);
+localStorage.setItem("date_now_month", date_now_month);
+localStorage.setItem("date_now_year", date_now_year);
+
+</script>
 
     <!-- js counter stuff i need on this page -->
     <script type="text/javascript">
 
-// initialize application defaults
+// initialize application defaults DOES this need to change???!!! ALSO - duplicate?
 let counter = JSON.parse(localStorage.getItem("counter")) || {
     submit: 0,
     time: [],
@@ -25,18 +43,13 @@ window.onload = function() {
 
 
 };
+// clear count - update this to work with auto clear - probs delete? but will still need to JSON stringify counter
 function clearCount() {
     document.getElementById("guesses").innerText = '0 guesses';
     counter.submit=0;
-    localStorage.setItem("counter", JSON.stringify(counter)); //need help here; if i change everything to local storage, how to clear just guesses here?
+    localStorage.setItem("counter", JSON.stringify(counter));
 }
 
-// add leading zeros
-function Pad(n) {
-	n = "00" + n;
-	return n.substring(n.length-2);
-}
-// ]]>
 </script>
 
 
@@ -45,7 +58,7 @@ function Pad(n) {
         <br/>
         <p>What's on your bookshelf today? Here are your six clues for today.</p>
         <p>In the Bookshelf library, it is currently: <b>{{ date|datetimefilter }}</b>. A new book is selected every day
-            at<b> X time</b>.</p>
+            at<b> 12:00 AM</b> Bookshelf Library Time (UTC).</p>
         <p><b>Important Note:</b> Capitalize the first letter of <em>every word</em> in the title.</p>
     </div>
 <!-- collapsible rule container -->
@@ -75,7 +88,7 @@ function Pad(n) {
       plays, or memoirs. There are no scientific texts or works of philosophy.<br>
       15. Make sure you have the right title. "Pinocchio" isn't a book, but "The Adventures Of Pinocchio" is. So if you're
       super sure about an answer, ask yourself if the book's *actual* title is different from what it's usually called.<br>
-          16. The game selects a new book every 24 hours, at midnight Central Standard Time.</p>
+          16. The game selects a new book every 24 hours, at midnight UTC.</p>
   </div>
     </div>
 
@@ -85,7 +98,7 @@ function Pad(n) {
 <div class = "container">
 <p>You have made <strong><span id="guesses">0 </span></strong> today.</p>
 
-    <!-- clear button-->
+    <!-- clear button this will need to change !!!-->
     <p>Remember to click <button onclick='clearCount();' class="btn btn-outline-secondary btn-sm" id="clearly">here</button> to reset guesses
     when it's time to play a new game.</p>
 </div>
@@ -101,7 +114,7 @@ function Pad(n) {
                         </label>
                     </div>
 
-                    <div class="container>"><button type="submit" class="btn btn-secondary" id="submit">Check Answer
+                    <div class="container>"><button type="submit" class="btn btn-secondary" id="submit" onsubmit="guess_function()">Check Answer
                     </button></div>
                 </form>
             </div>
@@ -221,7 +234,7 @@ function Pad(n) {
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body">
-          <p>{{ books.2.2 }}</p>
+          <p>{{ cluethree }}</p>
       </div>
   </div>
 </div>
@@ -237,7 +250,7 @@ function Pad(n) {
     </div>
     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
       <div class="card-body">
-          <p>{{ books.2.3 }}</p>
+          <p>{{ cluefour }}</p>
     </div>
   </div>
 
@@ -252,7 +265,7 @@ function Pad(n) {
     </div>
     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
       <div class="card-body">
-          <p>{{ books.2.4 }}</p>
+          <p>{{ cluefive }}</p>
     </div>
   </div>
 
@@ -267,7 +280,7 @@ function Pad(n) {
     </div>
     <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
       <div class="card-body">
-          <p>{{ books.2.5 }}</p>
+          <p>{{ cluesix }}</p>
     </div>
   </div>
 </div>
