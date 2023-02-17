@@ -9,7 +9,6 @@ app = Flask(__name__)
 bootstrap = Bootstrap4(app)
 
 # code to make answers class, choose next one every 24 hours
-from datetime import datetime, timezone, timedelta
 
 class Ans:
     def __init__(self, items):
@@ -166,10 +165,12 @@ def datetimefilter(value, format="%b %d, %Y, %I:%M %p"):
     local_dt = value.astimezone(tz)
     return local_dt.strftime(format)
 
+
 @app.errorhandler(404)
 def not_found(e):
     description = "You've reached a page that isn't real. Perhaps you entered a URL incorrectly?"
     return render_template("404.html", description=description)
+
 
 @app.errorhandler(500)
 def server_error(e):
@@ -189,10 +190,12 @@ def server_error(e):
 
     return render_template("408.html", description=description)
 
+
 @app.route('/teapot')
 def teapot():
     description = "I'm a lil' teapot, making robot tea! Capitalism, capitalism, you can't catch me!"
     return render_template("teapot.html", description=description)
+
 
 @app.route('/privacy')
 def privacy():
@@ -224,10 +227,12 @@ def contact():
     description = "Throw rocks at my window."
     return render_template("contact.html", description=description)
 
+
 @app.route('/support')
 def support():
     description = "If you enjoy Bookshelf, please consider supporting me by buying me a coffee on Ko-Fi!"
     return render_template("support.html", description=description)
+
 
 @app.route('/play', methods=["GET", "POST"])
 def play():

@@ -2,7 +2,7 @@
 {% block content %}
     <!-- removed sesssion.js from here - don't need it anymore-->
 
-<script type ="text/javascript">
+<script type ="text/javascript"> // should i move all of this into a eparate js file? because of loaing issues?
 
 // constituting date variables
 const date_now = new Date();
@@ -27,8 +27,7 @@ localStorage.setItem("date_now_year", date_now_year);
 
 // initialize application defaults DOES this need to change???!!! ALSO - duplicate?
 let counter = JSON.parse(localStorage.getItem("counter")) || {
-    submit: 0,
-    time: [],
+    submit: 0
 };
 
 // onload
@@ -138,7 +137,7 @@ function clearCount() {
    window.addEventListener('load', function() {
       document.getElementById('shared-guesses').innerText = counter.submit;
       document.getElementById('sharebox').value = `I found the book on today's shelf in ${counter.submit} guesses! https://www.bookshelfthegame.com/play`;
-    });
+    }); // should i give this function a name? or no?
 
   </script>
 {% endif %}
@@ -152,10 +151,10 @@ function clearCount() {
     <div class = "container">
     <input type="text" readonly="readonly" id="sharebox" value="You found the book on today's shelf in NUMBER guesses!
     https://www.bookshelfthegame.com/play"
-           onclick="copyToClipboard(this);">
+           onclick="copyToClipboard_1(this);">
         <div id="copyStatus" style="display: none;"><p>Score copied successfully.</p></div>
     <script type="text/javascript">
-        function copyToClipboard(element) {
+        function copyToClipboard_1(element) {
             element.select();
             if(document.execCommand('copy')) {
                 document.getElementById('copyStatus').style.display = '';

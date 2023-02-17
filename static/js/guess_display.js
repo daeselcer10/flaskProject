@@ -15,24 +15,24 @@ localStorage.setItem('my_guesses', JSON.stringify(displayGuesses));
 const data = JSON.parse(localStorage.getItem('my_guesses'));
 
 
-const liMaker = (text) => {
+const liMaker = function (text) {
   const li = document.createElement('li');
   li.textContent = text;
   ul.appendChild(li);
 }
-// there's good stuff here
+// some of this might need to change
 form.addEventListener('submit', function () {
   displayGuesses.push(input[0].value);
   localStorage.setItem('my_guesses', JSON.stringify(displayGuesses));
   liMaker(input[0].value);
   counter.submit++;
-  localStorage.setItem("counter", JSON.stringify(counter));
+  localStorage.setItem("counter", JSON.stringify(counter)); //this is a duplicate, line 49 in play.html
   const time = new Date();
   localStorage.setItem("last_guess_date", time.toUTCString());
 
 });
 
-//does this work?
+//for each guess, add to list maker
 data.forEach(guess => {
   liMaker(guess);
 });
@@ -46,24 +46,8 @@ button.addEventListener('click', function () {
   displayGuesses = [];
 });
 
-// EVERYTHING BELOW HERE IS NEW
 
-// called on guess submit -- do i need all of this? i already have counter.submit and counter++
-function guess_function() {
-  // Get current guess count from localStorage. If none, default to zero
-  let guessCount = localStorage.getItem("counter") || 0;
-  // increment guess count
-  guessCount++;
-  // save new count to local storage
-  localStorage.setItem("guessCount", guessCount);
-  //Update UI with new guess count
-  document.getElementById("guesses").innerHTML = guessCount;
-  // save time to localstorage to determine when user made last guess
-  const time = new Date();
-  localStorage.setItem("lastGuessTime", time.toUTCString())
-}
-
-//function to check if 2 dates are the same
+//function to check if 2 dates are the same - can be used as-is
 function datesAreSameDay(date1, date2) {
   return date1.getUTCFullYear() === date2.getUTCFullYear() &&
       date1.getUTCMonth() === date2.getUTCMonth() &&
@@ -73,21 +57,28 @@ function datesAreSameDay(date1, date2) {
 //code down here runs on page load. check if guess made today, if not reset count
 
 // get last guess time from localStorage
-const lastGuessTimeString = localStorage.getItem("lastGuessTime");
+const lastGuessTimeString = localStorage.getItem("last_guess_date");
 
 // if last guess time not null, then user has made a guess before
 // in that case, check if last guess = today. if not, reset count
 if (lastGuessTimeString) {
   //create date object from last guess time string
   const lastGuessTime = new Date(lastGuessTimeString);
-  // create new date for today - DOES THIS NEED TO GO IN LOCAL STORAGE SOMEHOW?
+  // create new date for today - doesn't need to go in local storage because just being used in function, yes?
   const today = new Date();
   // check if last guess was NOT made today
   if (!datesAreSameDay(lastGuessTime, today)) {
-    localStorage.setItem("guessCount", 0);
+    counter.submit = 0;
+    localStorage.setItem("counter", JSON.stringify(counter)); // how do i make this counter.submit? also, stringified
+    // do i also need to set the counter.submit itself to 0?
+    localStorage.removeItem('my_guesses');
+      while (ul.firstChild) {
+    ul.removeChild(ul.firstChild);
+  }
+    displayGuesses = [];
   }
 }
 
 //Update UI with current guess count
-let guessCount = localStorage.getItem("guessCount") || 0;
+let guessCount = localStorage.getItem("guessCount") || 0; //should be the counter
 document.getElementById("guesses").innerHTML = guessCount;

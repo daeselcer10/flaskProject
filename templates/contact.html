@@ -11,10 +11,10 @@
       copy the address yourself.</p>
       <div class = "container">
     <input type="text" readonly="readonly" id="emailbox" value="bookshelfthegame@gmail.com"
-           onclick="copyToClipboard(this);">
+           onclick="copyToClipboard_2(this);">
         <div id="copyEmail" style="display: none;"><p>Copied, now throw it at my window.</p></div>
     <script type="text/javascript">
-        function copyToClipboard(element) {
+        function copyToClipboard_2(element) {
             element.select();
             if(document.execCommand('copy')) {
                 document.getElementById('copyEmail').style.display = '';
