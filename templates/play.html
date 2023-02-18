@@ -1,27 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-    <!-- removed sesssion.js from here - don't need it anymore-->
 
-<script type ="text/javascript"> // should i move all of this into a eparate js file? because of loaing issues?
+<script type ="text/javascript"> // should i move all of this into a separate js file? because of loading issues?
 
-// constituting date variables
+// constituting date variables and localstroage, just because
 const date_now = new Date();
-const date_now_date = date_now.getUTCDate();
-const date_now_hours = date_now.getUTCHours();
-const date_now_month = date_now.getUTCMonth();
-const date_now_year = date_now.getUTCFullYear();
 const jsonDate_now = date_now.toJSON();
-
-
-//setting local storage items for current dates in UTC, and eventually local storage items for guesses too
 localStorage.setItem("date_now", jsonDate_now);
-localStorage.setItem("date_now_date", date_now_date);
-localStorage.setItem("date_now_hours", date_now_hours);
-localStorage.setItem("date_now_month", date_now_month);
-localStorage.setItem("date_now_year", date_now_year);
 
 </script>
-
     <!-- js counter stuff i need on this page -->
     <script type="text/javascript">
 
@@ -40,14 +27,9 @@ window.onload = function() {
 	// store value in local storage
 	localStorage.setItem("counter", JSON.stringify(counter));
 
-
 };
-// clear count - update this to work with auto clear - probs delete? but will still need to JSON stringify counter
-function clearCount() {
-    document.getElementById("guesses").innerText = '0 guesses';
-    counter.submit=0;
-    localStorage.setItem("counter", JSON.stringify(counter));
-}
+
+// clear count used to go here
 
 </script>
 
@@ -97,9 +79,8 @@ function clearCount() {
 <div class = "container">
 <p>You have made <strong><span id="guesses">0 </span></strong> today.</p>
 
-    <!-- clear button this will need to change !!!-->
-    <p>Remember to click <button onclick='clearCount();' class="btn btn-outline-secondary btn-sm" id="clearly">here</button> to reset guesses
-    when it's time to play a new game.</p>
+    <!-- DELETED BUTTON FROM HERE-->
+
 </div>
     <br>
 

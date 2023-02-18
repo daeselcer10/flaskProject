@@ -4,9 +4,10 @@
  * No original license provided
  * Adapted by Dae Selcer and Drew Pereli
  */
+
 const form = document.querySelector('form');
 const ul = document.getElementById('show_guesses');
-const button = document.getElementById('clearly'); // this will need to change!!!
+ // DELETED clear button from here
 const input = document.getElementsByName('guess');
 let displayGuesses = localStorage.getItem('my_guesses') ? JSON.parse(localStorage.getItem('my_guesses')) : [];
 
@@ -20,13 +21,13 @@ const liMaker = function (text) {
   li.textContent = text;
   ul.appendChild(li);
 }
-// some of this might need to change
+// submit event listener, push guesses to local storage, increment counter, add last guess date
 form.addEventListener('submit', function () {
   displayGuesses.push(input[0].value);
   localStorage.setItem('my_guesses', JSON.stringify(displayGuesses));
   liMaker(input[0].value);
   counter.submit++;
-  localStorage.setItem("counter", JSON.stringify(counter)); //this is a duplicate, line 49 in play.html
+  localStorage.setItem("counter", JSON.stringify(counter)); //this is a duplicate, line 41 and 49 in play.html
   const time = new Date();
   localStorage.setItem("last_guess_date", time.toUTCString());
 
@@ -37,17 +38,9 @@ data.forEach(guess => {
   liMaker(guess);
 });
 
-// this will need to change!!!
-button.addEventListener('click', function () {
-  localStorage.removeItem('my_guesses');
-  while (ul.firstChild) {
-    ul.removeChild(ul.firstChild);
-  }
-  displayGuesses = [];
-});
+// DELETED button clear from here
 
-
-//function to check if 2 dates are the same - can be used as-is
+//function to check if 2 dates are the same - love this
 function datesAreSameDay(date1, date2) {
   return date1.getUTCFullYear() === date2.getUTCFullYear() &&
       date1.getUTCMonth() === date2.getUTCMonth() &&
@@ -66,11 +59,10 @@ if (lastGuessTimeString) {
   const lastGuessTime = new Date(lastGuessTimeString);
   // create new date for today - doesn't need to go in local storage because just being used in function, yes?
   const today = new Date();
-  // check if last guess was NOT made today
+  // check if last guess was NOT made today, also remove
   if (!datesAreSameDay(lastGuessTime, today)) {
     counter.submit = 0;
-    localStorage.setItem("counter", JSON.stringify(counter)); // how do i make this counter.submit? also, stringified
-    // do i also need to set the counter.submit itself to 0?
+    localStorage.setItem("counter", JSON.stringify(counter));
     localStorage.removeItem('my_guesses');
       while (ul.firstChild) {
     ul.removeChild(ul.firstChild);
@@ -80,5 +72,5 @@ if (lastGuessTimeString) {
 }
 
 //Update UI with current guess count
-let guessCount = localStorage.getItem("guessCount") || 0; //should be the counter
-document.getElementById("guesses").innerHTML = guessCount;
+let guessCount = localStorage.getItem("guessCount") || 0;
+document.getElementById("guesses").innerHTML = guessCount; //innerText? 0 guesses,not just 0?

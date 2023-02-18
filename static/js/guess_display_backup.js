@@ -44,3 +44,25 @@ button.addEventListener('click', function () {
   }
   displayGuesses = [];
 });
+
+// other backups from play.html
+
+function clearCount() {
+    document.getElementById("guesses").innerText = '0 guesses';
+    counter.submit=0;
+    localStorage.setItem("counter", JSON.stringify(counter));
+}
+
+<p>Remember to click <button onClick='clearCount();' className="btn btn-outline-secondary btn-sm"
+                             id="clearly">here</button> to reset guesses
+  when it's time to play a new game.</p>
+
+const button = document.getElementById('clearly');
+
+button.addEventListener('click', function () {
+  localStorage.removeItem('my_guesses');
+  while (ul.firstChild) {
+    ul.removeChild(ul.firstChild);
+  }
+  displayGuesses = [];
+});
