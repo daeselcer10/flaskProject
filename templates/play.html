@@ -17,7 +17,7 @@ localStorage.setItem("yourMidnight", yourMidnight);
     <!-- js counter stuff i need on this page -->
     <script type="text/javascript">
 
-// initialize application defaults DOES this need to change???!!! ALSO - duplicate?
+// initialize application defaults - is it a PROBLEM that this is a DUPLICATE? no, right, because initiate?
 let counter = JSON.parse(localStorage.getItem("counter")) || {
     submit: 0
 };
@@ -48,8 +48,7 @@ window.onload = function() {
         <p>What's on your bookshelf today? Here are your six clues for today.</p>
         <p>In the Bookshelf library, it is currently: <b>{{ date|datetimefilter }}</b>.</p>
             <p>A new book is selected every day
-            at<b> 12:00 AM</b> Bookshelf Library Time (UTC), or <b><span id="yourMidnight"> </span> your time.</b></p>
-        <p><b>Important Note:</b> Capitalize the first letter of <em>every word</em> in the title.</p>
+                at<b> 12:00 AM</b> Bookshelf Library Time (UTC), or <b><span id="yourMidnight"> </span></b> your time.</p>
     </div>
 <!-- collapsible rule container -->
     <div class = "container"><button class="btn btn-outline-info" type="button" data-toggle="collapse"
@@ -61,22 +60,20 @@ window.onload = function() {
       <p>1. The clues are collapsible. Click to reveal them. Look at Clue 1, then type a guess. Look at Clue 2, then type a guess.
       And so on and so forth. Your past guesses display under "Your Guesses So Far."<br>
       2. The clues get easier as you go. Clue 1 is the hardest; Clue 6 is the easiest.<br>
-      3. Spelling absolutely counts.<br>
-      4. Capitalize the first letter of every word in the title. Yes, even if it's not that way in the actual title.
-      The code looks for an exact match, so this is an attempt to be fair.<br>
-      5. Do not use quotation marks.<br>
-      6. If a book's title includes an apostrophe, include it. "Gerald's Game" would be correct; "Geralds Game" would be incorrect.<br>
-      7. In fact, include all punctuation. The book "O Pioneers!" has an exclamation point, so you need one too!<br>
-      8. Except quotation marks. Don't include those. We hate them.<br>
-      9. You have unlimited guesses.<br>
-          10. Guesses display under "Your Guesses So Far" as you make them.<br>
-      11. Answers will always be a book's full title. So "Left Hand Of Darkness" would be incorrect, but
+      3. Spelling absolutely counts. But capitalization does not!<br>
+      4. Do not use quotation marks.<br>
+      5. If a book's title includes an apostrophe, include it. "Gerald's Game" would be correct; "Geralds Game" would be incorrect.<br>
+      6. In fact, include all punctuation. The book "O Pioneers!" has an exclamation point, so you need one too!<br>
+      7. Except quotation marks. Don't include those. We hate them.<br>
+      8. You have unlimited guesses.<br>
+          9. Guesses display under "Your Guesses So Far" as you make them.<br>
+      10. Answers will always be a book's full title. So "Left Hand Of Darkness" would be incorrect, but
       "The Left Hand Of Darkness" would be correct.<br>
-      12. Numbers should be treated as they were in the original title. "1984" is correct; "Nineteen Eighty Four" is not.<br>
-      13. Answers do not repeat.<br>
-      14. All the books are narrative fiction, epic poems,
+      11. Numbers should be treated as they were in the original title. "1984" is correct; "Nineteen Eighty Four" is not.<br>
+      12. Answers do not repeat.<br>
+      13. All the books are narrative fiction, epic poems,
       plays, or memoirs. There are no scientific texts or works of philosophy. ...Yet.<br>
-      15. Make sure you have the right title. "Pinocchio" isn't a book, but "The Adventures Of Pinocchio" is. So if you're
+      14. Make sure you have the right title. "Pinocchio" isn't a book, but "The Adventures Of Pinocchio" is. So if you're
       super sure about an answer, ask yourself if the book's *actual* title is different from what it's usually called.<br></p>
   </div>
     </div>
