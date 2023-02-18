@@ -5,8 +5,13 @@
 
 // constituting date variables and localstroage, just because
 const date_now = new Date();
+const yourTimeNow = (date_now.toLocaleTimeString());
 const jsonDate_now = date_now.toJSON();
+const midnightUTC = new Date('March 28, 2023 00:00:00 GMT+00:00'); //how do I account for daylight savings?
+const yourMidnight = (midnightUTC.toLocaleTimeString());
 localStorage.setItem("date_now", jsonDate_now);
+localStorage.setItem("yourTimeNow", yourTimeNow);
+localStorage.setItem("yourMidnight", yourMidnight);
 
 </script>
     <!-- js counter stuff i need on this page -->
@@ -27,6 +32,9 @@ window.onload = function() {
 	// store value in local storage
 	localStorage.setItem("counter", JSON.stringify(counter));
 
+    // get and display user's time
+    document.getElementById("yourMidnight").firstChild.nodeValue = yourMidnight;
+
 };
 
 // clear count used to go here
@@ -38,8 +46,9 @@ window.onload = function() {
     <h1>Play Bookshelf</h1>
         <br/>
         <p>What's on your bookshelf today? Here are your six clues for today.</p>
-        <p>In the Bookshelf library, it is currently: <b>{{ date|datetimefilter }}</b>. A new book is selected every day
-            at<b> 12:00 AM</b> Bookshelf Library Time (UTC).</p>
+        <p>In the Bookshelf library, it is currently: <b>{{ date|datetimefilter }}</b>.</p>
+            <p>A new book is selected every day
+            at<b> 12:00 AM</b> Bookshelf Library Time (UTC), or <b><span id="yourMidnight"> </span> your time.</b></p>
         <p><b>Important Note:</b> Capitalize the first letter of <em>every word</em> in the title.</p>
     </div>
 <!-- collapsible rule container -->
@@ -60,16 +69,15 @@ window.onload = function() {
       7. In fact, include all punctuation. The book "O Pioneers!" has an exclamation point, so you need one too!<br>
       8. Except quotation marks. Don't include those. We hate them.<br>
       9. You have unlimited guesses.<br>
-          10. Guesses display under "My Guesses So Far" as you make them.<br>
+          10. Guesses display under "Your Guesses So Far" as you make them.<br>
       11. Answers will always be a book's full title. So "Left Hand Of Darkness" would be incorrect, but
       "The Left Hand Of Darkness" would be correct.<br>
       12. Numbers should be treated as they were in the original title. "1984" is correct; "Nineteen Eighty Four" is not.<br>
       13. Answers do not repeat.<br>
       14. All the books are narrative fiction, epic poems,
-      plays, or memoirs. There are no scientific texts or works of philosophy.<br>
+      plays, or memoirs. There are no scientific texts or works of philosophy. ...Yet.<br>
       15. Make sure you have the right title. "Pinocchio" isn't a book, but "The Adventures Of Pinocchio" is. So if you're
-      super sure about an answer, ask yourself if the book's *actual* title is different from what it's usually called.<br>
-          16. The game selects a new book every 24 hours, at midnight UTC.</p>
+      super sure about an answer, ask yourself if the book's *actual* title is different from what it's usually called.<br></p>
   </div>
     </div>
 
@@ -114,11 +122,11 @@ window.onload = function() {
         below to share your score!</p>
   </div>
 
-  <script>
+  <script> // need to edit this so that it resets to ZERO after 24 hours
    window.addEventListener('load', function() {
       document.getElementById('shared-guesses').innerText = counter.submit;
       document.getElementById('sharebox').value = `I found the book on today's shelf in ${counter.submit} guesses! https://www.bookshelfthegame.com/play`;
-    }); // should i give this function a name? or no?
+    }); // should i give this function a name or not?
 
   </script>
 {% endif %}
