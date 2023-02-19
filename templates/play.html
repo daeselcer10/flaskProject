@@ -5,13 +5,8 @@
 
 // constituting date variables and localstroage, just because
 const date_now = new Date();
-const yourTimeNow = (date_now.toLocaleTimeString());
 const jsonDate_now = date_now.toJSON();
-const midnightUTC = new Date('March 28, 2023 00:00:00 GMT+00:00'); //how do I account for daylight savings?
-const yourMidnight = (midnightUTC.toLocaleTimeString());
 localStorage.setItem("date_now", jsonDate_now);
-localStorage.setItem("yourTimeNow", yourTimeNow);
-localStorage.setItem("yourMidnight", yourMidnight);
 
 </script>
     <!-- js counter stuff i need on this page -->
@@ -32,9 +27,6 @@ window.onload = function() {
 	// store value in local storage
 	localStorage.setItem("counter", JSON.stringify(counter));
 
-    // get and display user's time
-    document.getElementById("yourMidnight").firstChild.nodeValue = yourMidnight;
-
 };
 
 // clear count used to go here
@@ -48,7 +40,7 @@ window.onload = function() {
         <p>What's on your bookshelf today? Here are your six clues for today.</p>
         <p>In the Bookshelf library, it is currently: <b>{{ date|datetimefilter }}</b>.</p>
             <p>A new book is selected every day
-                at<b> 12:00 AM</b> Bookshelf Library Time (UTC), or <b><span id="yourMidnight"> </span></b> your time.</p>
+                at<b> 12:00 AM</b> Bookshelf Library Time (UTC).
     </div>
 <!-- collapsible rule container -->
     <div class = "container"><button class="btn btn-outline-info" type="button" data-toggle="collapse"
@@ -59,8 +51,8 @@ window.onload = function() {
   <div class="card card-body">
       <p>1. The clues are collapsible. Click to reveal them. Look at Clue 1, then type a guess. Look at Clue 2, then type a guess.
       And so on and so forth. Your past guesses display under "Your Guesses So Far."<br>
-      2. The clues get easier as you go. Clue 1 is the hardest; Clue 6 is the easiest.<br>
-      3. Spelling absolutely counts. But capitalization does not!<br>
+      2. Spelling absolutely counts.<br>
+      3. But capitalization does not. Hurray!<br>
       4. Do not use quotation marks.<br>
       5. If a book's title includes an apostrophe, include it. "Gerald's Game" would be correct; "Geralds Game" would be incorrect.<br>
       6. In fact, include all punctuation. The book "O Pioneers!" has an exclamation point, so you need one too!<br>
@@ -95,7 +87,7 @@ window.onload = function() {
                     <div class = "form-group">
                         <label><b>What's on your Bookshelf today?</b></label><br/>
                         <label>
-                            <input class ="form control" type="text" name="guess" autocapitalize="words" placeholder="Type your guess here!">
+                            <input class ="form control" type="text" name="guess" placeholder="Type your guess here!">
                         </label>
                     </div>
 
@@ -119,7 +111,7 @@ window.onload = function() {
         below to share your score!</p>
   </div>
 
-  <script> // need to edit this so that it resets to ZERO after 24 hours
+  <script> // interpolate guesses into the sharebox
    window.addEventListener('load', function() {
       document.getElementById('shared-guesses').innerText = counter.submit;
       document.getElementById('sharebox').value = `I found the book on today's shelf in ${counter.submit} guesses! https://www.bookshelfthegame.com/play`;
