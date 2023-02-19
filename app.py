@@ -24,8 +24,8 @@ class Ans:
 
 # list of answers in order
 ans = Ans([
-    'Lolita',
-    'Anna Karenina',
+    'lolita',
+    'anna karenina',
 ])
 
 # code to make clue 1 class, choose next one every 24 hours
@@ -245,7 +245,7 @@ def play():
 
         req = request.form
 
-        guess = req.get("guess")
+        guess = req.get("guess").lower().strip()
 
         if guess == ans.next():
             flash("Wow, you got it! ::triumphant music::", "success")
