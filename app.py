@@ -22,11 +22,13 @@ class Ans:
             self._t = datetime.now(timezone.utc).date()
         return self.items[self._i]
 
+
 # list of answers in order
 ans = Ans([
     'lolita',
     'anna karenina',
 ])
+
 
 # code to make clue 1 class, choose next one every 24 hours
 class Clueone:
@@ -41,6 +43,7 @@ class Clueone:
                 self._t = datetime.now(timezone.utc).date()
             return self.items[self._i]
 
+
 # list of clue 1s in order
 clueone = Clueone([
     'Clue1A',
@@ -48,6 +51,7 @@ clueone = Clueone([
     'Clue1C',
     'Clue1D'
 ])
+
 
 # code to make clue 2 class, choose next one every 24 hours
 class Cluetwo:
@@ -62,6 +66,7 @@ class Cluetwo:
                 self._t = datetime.now(timezone.utc).date()
             return self.items[self._i]
 
+
 # list of clue 2s in order
 cluetwo = Cluetwo([
     'Clue2A',
@@ -69,6 +74,7 @@ cluetwo = Cluetwo([
     'Clue2C',
     'Clue2D'
 ])
+
 
 # code to make clue 3 class, choose next one every 24 hours
 class Cluethree:
@@ -83,13 +89,15 @@ class Cluethree:
             self._t = datetime.now(timezone.utc).date()
         return self.items[self._i]
 
-#list of clue 3s in order
+
+# list of clue 3s in order
 cluethree = Cluethree([
     'Clue3A',
     'Clue3B',
     'Clue3C',
     'Clue3D'
 ])
+
 
 # code to make clue 4 class, choose next one every 24 hours
 class Cluefour:
@@ -104,13 +112,15 @@ class Cluefour:
             self._t = datetime.now(timezone.utc).date()
         return self.items[self._i]
 
-#list of clue 4s in order
+
+# list of clue 4s in order
 cluefour = Cluefour([
     'Clue 4A',
     'Clue 4B',
     'Clue 4C',
     'Clue 4D'
 ])
+
 
 # code to make clue 5 class, choose next one every 24 hours
 class Cluefive:
@@ -124,6 +134,7 @@ class Cluefive:
             self._t = datetime.now(timezone.utc).date()
         return self.items[self._i]
 
+
 # list of clue 5s in order
 cluefive = Cluefive ([
     'Clue5A',
@@ -131,6 +142,7 @@ cluefive = Cluefive ([
     'Clue 5C',
     'Clue 5D'
 ])
+
 
 # code to make clue 6 class, choose next one every 24 hours
 class Cluesix:
@@ -145,13 +157,15 @@ class Cluesix:
             self._t = datetime.now(timezone.utc).date()
         return self.items[self._i]
 
-#list of clue 6s in order
+
+# list of clue 6s in order
 cluesix = Cluesix ([
     'Clue 6A',
     'Clue 6B',
     'Clue 6C',
     'Clue 6D'
 ])
+
 
 # eventually figure out how to actually do a secret key
 app.config['SECRET_KEY'] = 'alvkkjfifhbojn0iebkfu3yjbvkek298b'
@@ -257,6 +271,7 @@ def play():
     return render_template("play.html", date=date, clueone=clueone.next(),
                            cluetwo=cluetwo.next(), cluethree=cluethree.next(), cluefour=cluefour.next(),
                            cluefive=cluefive.next(), cluesix=cluesix.next()), ans.next()
+
 
 if __name__ == '__main__':
     app.run()
