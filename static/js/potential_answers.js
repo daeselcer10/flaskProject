@@ -752,7 +752,7 @@ let books = [
   let autocomplete = document.getElementById("autocomplete-list");
 
   // Add a keyup event listener to the input element
-  input_1[0].addEventListener("keyup", function(e) {
+  input_1[0].addEventListener("input", function (e) {
     // Clear any previous suggestions
     autocomplete.innerHTML = "";
     // Get the input value
