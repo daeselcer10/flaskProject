@@ -149,40 +149,6 @@ window.onload = function() {
                         {% endif %}
                 {% endwith %}
       </div>
-<br>
-    <!-- sharing score; previous block of code edits the copy clipboard stuff below-->
-    <div class = "container">
-    <input type="text" readonly="readonly" id="sharebox" value="You found the book on today's shelf in NUMBER guesses!
-    https://www.bookshelfthegame.com/play"
-           onclick="copyToClipboard_1(this);">
-        <div id="copyStatus" style="display: none;"><p>Score copied successfully.</p></div>
-    <script type="text/javascript">
-        function copyToClipboard_1(element) {
-            element.select();
-            if(document.execCommand('copy')) {
-                document.getElementById('copyStatus').style.display = '';
-                setTimeout(function() {
-                    document.getElementById('copyStatus').style.display = 'none';
-                }, 5000);
-            }
-        }
-    </script>
-    </div>
-    <br>
-    <!-- shareon.js.org social share - remember to check URL before you go live-->
-    <div class = "container">
-    <div class="shareon" data-url="https://www.bookshelfthegame.com/play.html">
-    <a class="twitter" data-title="Today's Bookshelf Score"></a>
-    <a class="facebook" data-title="Today's Bookshelf Score"></a>
-    <a class="reddit" data-title="Today's Bookshelf Score"></a>
-    <a class="pinterest" data-title="Today's Bookshelf Score"></a>
-    <a class = "mastodon" data-title="Today's Bookshelf Score"></a>
-    <a class="linkedin" data-title="Today's Bookshelf Score"></a>
-    <a class="whatsapp" data-title="Today's Bookshelf Score"></a>
-        <a class="telegram" data-title="Today's Bookshelf Score"></a>
-    </div></div><br/>
-
-    <br>
       <!-- display guesses here-->
     <div class="container">
         <p><b>Your Guesses So Far</b></p>
@@ -290,6 +256,38 @@ window.onload = function() {
     </div>
   </div>
   </div></div>
+    <br>
+    <br>
+      <!-- sharing score; previous block of code edits the copy clipboard stuff below-->
+    <div class = "container">
+    <input type="text" readonly="readonly" id="sharebox" value="You found the book on today's shelf in NUMBER guesses!
+    https://www.bookshelfthegame.com/play"
+           onclick="copyToClipboard_1(this);">
+        <div id="copyStatus" style="display: none;"><p>Score copied successfully.</p></div>
+    <script type="text/javascript">
+        function copyToClipboard_1(element) {
+            element.select();
+            if(document.execCommand('copy')) {
+                document.getElementById('copyStatus').style.display = '';
+                setTimeout(function() {
+                    document.getElementById('copyStatus').style.display = 'none';
+                }, 5000);
+            }
+        }
+    </script>
+    </div>
+      <!-- shareon.js.org social share - remember to check URL before you go live-->
+    <div class = "container">
+    <div class="shareon" data-url="https://www.bookshelfthegame.com/play.html">
+    <a class="twitter" data-title="Today's Bookshelf Score"></a>
+    <a class="facebook" data-title="Today's Bookshelf Score"></a>
+    <a class="reddit" data-title="Today's Bookshelf Score"></a>
+    <a class="pinterest" data-title="Today's Bookshelf Score"></a>
+    <a class = "mastodon" data-title="Today's Bookshelf Score"></a>
+    <a class="linkedin" data-title="Today's Bookshelf Score"></a>
+    <a class="whatsapp" data-title="Today's Bookshelf Score"></a>
+        <a class="telegram" data-title="Today's Bookshelf Score"></a>
+    </div></div><br/>
     <br>
     <br>
         <!-- guess display js-->

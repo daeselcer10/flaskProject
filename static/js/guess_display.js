@@ -7,7 +7,6 @@
 
 const form = document.querySelector('form');
 const ul = document.getElementById('show_guesses');
- // DELETED clear button from here
 const input = document.getElementsByName('guess');
 let displayGuesses = localStorage.getItem('my_guesses') ? JSON.parse(localStorage.getItem('my_guesses')) : [];
 
