@@ -26,18 +26,7 @@ class Ans:
 # list of answers in order
 ans = Ans([
     'lolita',
-    "howl's moving castle",
-    "oliver twist",
-    "beezus and ramona",
-    "catcher in the rye",
-    "the women of brewster place",
-    "because of winn-dixie",
-    "night",
-    "tales of a fourth grade nothing",
-    "the sisterhood of the traveling pants",
-    "the wings of the dove",
-    "the water babies",
-    "the brothers karamazov",
+    "howl's moving castle"
 ])
 
 

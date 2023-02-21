@@ -2,6 +2,8 @@
 {% block content %}
     <!--  confetti -->
 <script src ="/static/js/confetti.js"></script>
+    <!-- potential answers-->
+    <script src ="/static/js/potential_answers.js"></script>
     <!-- date variables -->
 <script type ="text/javascript">
 
@@ -89,8 +91,13 @@ window.onload = function() {
                     <div class = "form-group">
                         <label><b>What's on your Bookshelf today?</b></label><br/>
                         <label>
-                            <input class ="form control" type="text" name="guess" placeholder="Type your guess here!">
+                                                   <!-- Create a div element for autocomplete suggestions -->
+      <div id="autocomplete-list"></div>
+      <br>
+                            <input class ="form control" type="text" name="guess" placeholder="Type your guess here!"
+                            id="myInput">
                         </label>
+
                     </div>
 
                     <div class="container>"><button type="submit" class="btn btn-secondary" id="submit" onsubmit="guess_function()">Check Answer
