@@ -55,19 +55,19 @@ window.onload = function() {
       <p>1. The clues are collapsible. Click to reveal them. Look at Clue 1, then type a guess. Look at Clue 2, then type a guess.
       And so on and so forth. Your past guesses display under "Your Guesses So Far," right above the clues.<br>
           2. If you type 6 or more characters, potential answer choices will display above the submit box. If you have five or fewer
-          characters, potential answers will not display.
+          characters, potential answers will not display.<br>
           3. If a potential answer isn't displaying, ask yourself if you are forgetting (or adding!) an "A" or "The" at
-          the beginning of the title.
-      2. Spelling absolutely counts.<br>
-      3. But capitalization does not. Hurray!<br>
-      4. Do not use quotation marks.<br>
-      5. Include all punctuation. Except accent marks!<br>
-      6. You have unlimited guesses.<br>
-      7. Answers will always be a book's full title. So "Left Hand Of Darkness" would be incorrect, but
+          the beginning of the title.<br>
+      4. Spelling absolutely counts.<br>
+      5. But capitalization does not. Hurray!<br>
+      6. Do not use quotation marks.<br>
+      7. Include all punctuation. Except accent marks!<br>
+      8. You have unlimited guesses.<br>
+      9. Answers will always be a book's full title. So "Left Hand Of Darkness" would be incorrect, but
       "The Left Hand Of Darkness" would be correct.<br>
-      8. Numbers should be treated as they were in the original title. "1984" is correct; "Nineteen Eighty Four" is not.<br>
-      9. Answers do not repeat.<br>
-      10. Have fun!</p>
+      10. Numbers should be treated as they were in the original title. "1984" is correct; "Nineteen Eighty Four" is not.<br>
+      11. Answers do not repeat.<br>
+      12. Have fun!</p>
   </div>
     </div>
 
@@ -113,8 +113,8 @@ window.onload = function() {
                                    <span>{{ message }} </span></div>
                               {% if category == "success" %}
   <div>
-    <p><b>Ding ding!</b> You found the right answer in <span id="shared-guesses"></span> guesses. Click
-        below to share your score!</p>
+    <p><b>Ding ding!</b> You found the right answer in <span id="shared-guesses"></span> guesses. Scroll to the
+        bottom of the page and click to share your score!</p>
   </div>
 
   <script> // interpolate guesses into the sharebox
@@ -259,6 +259,7 @@ window.onload = function() {
     <br>
     <br>
       <!-- sharing score; previous block of code edits the copy clipboard stuff below-->
+    <p><b>Once you've won, click below to share your score!</b></p>
     <div class = "container">
     <input type="text" readonly="readonly" id="sharebox" value="You found the book on today's shelf in NUMBER guesses!
     https://www.bookshelfthegame.com/play"
@@ -276,6 +277,7 @@ window.onload = function() {
         }
     </script>
     </div>
+    <br>
       <!-- shareon.js.org social share - remember to check URL before you go live-->
     <div class = "container">
     <div class="shareon" data-url="https://www.bookshelfthegame.com/play.html">
