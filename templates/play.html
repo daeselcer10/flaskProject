@@ -2,16 +2,16 @@
 {% block content %}
     <!--  confetti -->
 <script src ="/static/js/confetti.js"></script>
-    <!-- counter stuff -->
-<script type ="text/javascript"> // should i move all of this into a separate js file? because of loading issues?
+    <!-- date variables -->
+<script type ="text/javascript">
 
-// constituting date variables and localstroage, just because
+// constituting date variables and localstorage, just because
 const date_now = new Date();
 const jsonDate_now = date_now.toJSON();
 localStorage.setItem("date_now", jsonDate_now);
 
 </script>
-    <!-- js counter stuff i need on this page -->
+    <!-- js counter stuff needed on this page -->
     <script type="text/javascript">
 
 // initialize application defaults - is it a PROBLEM that this is a DUPLICATE? no, right, because initiate?
@@ -117,7 +117,7 @@ window.onload = function() {
    window.addEventListener('load', function() {
       document.getElementById('shared-guesses').innerText = counter.submit;
       document.getElementById('sharebox').value = `I found the book on today's shelf in ${counter.submit} guesses! https://www.bookshelfthegame.com/play`;
-    }); // should i give this function a name or not?
+    });
 
   </script>
                                   <!-- confetti-->

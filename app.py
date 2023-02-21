@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, make_response, redirect, flash
+from flask import Flask, render_template, request, redirect, flash
 from flask_bootstrap import Bootstrap4
 from datetime import datetime, timezone
 import pytz
@@ -26,7 +26,18 @@ class Ans:
 # list of answers in order
 ans = Ans([
     'lolita',
-    'anna karenina',
+    "howl's moving castle",
+    "oliver twist",
+    "beezus and ramona",
+    "catcher in the rye",
+    "the women of brewster place",
+    "because of winn-dixie",
+    "night",
+    "tales of a fourth grade nothing",
+    "the sisterhood of the traveling pants",
+    "the wings of the dove",
+    "the water babies",
+    "the brothers karamazov",
 ])
 
 
@@ -46,7 +57,7 @@ class Clueone:
 
 # list of clue 1s in order
 clueone = Clueone([
-    'Clue1A',
+    'This book was written in 1955 in the USA.',
     'Clue1B',
     'Clue1C',
     'Clue1D'
@@ -69,7 +80,7 @@ class Cluetwo:
 
 # list of clue 2s in order
 cluetwo = Cluetwo([
-    'Clue2A',
+    'This book is the memoirs of its dead protagonist. Well, except for the fictitious forward.',
     'Clue2B',
     'Clue2C',
     'Clue2D'
@@ -92,7 +103,7 @@ class Cluethree:
 
 # list of clue 3s in order
 cluethree = Cluethree([
-    'Clue3A',
+    'The one-word title of this book has become a pop-culture byword, although there is disagreement about its pronunciation.',
     'Clue3B',
     'Clue3C',
     'Clue3D'
@@ -115,7 +126,7 @@ class Cluefour:
 
 # list of clue 4s in order
 cluefour = Cluefour([
-    'Clue 4A',
+    'This book was made into a 1962 film directed by Stanley Kubrick.',
     'Clue 4B',
     'Clue 4C',
     'Clue 4D'
@@ -137,7 +148,7 @@ class Cluefive:
 
 # list of clue 5s in order
 cluefive = Cluefive ([
-    'Clue5A',
+    'This book was written by Vladimir Nabokov.',
     'Clue 5B',
     'Clue 5C',
     'Clue 5D'
@@ -160,7 +171,7 @@ class Cluesix:
 
 # list of clue 6s in order
 cluesix = Cluesix ([
-    'Clue 6A',
+    'The main characters are Humbert Humbert and Dolores Haze, called Lolita.',
     'Clue 6B',
     'Clue 6C',
     'Clue 6D'
@@ -262,7 +273,7 @@ def play():
         guess = req.get("guess").lower().strip()
 
         if guess == ans.next():
-            flash("Wow, you got it! ::triumphant music::", "success")
+            flash("Wow, you got it! Cue the confetti!", "success")
             return redirect(request.url)
 
         flash("Nope, that's not it. ::sad trombone.::", "secondary")
