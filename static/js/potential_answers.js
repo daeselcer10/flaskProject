@@ -746,28 +746,29 @@ let books = [
 "zorro",
 ];
 
+// Get the input element and the autocomplete div
+let input_1 = document.getElementsByName("guess");
+let autocomplete = document.getElementById("autocomplete-list");
 
-  // Get the input element and the autocomplete div
-  let input_1 = document.getElementsByName("guess");
-  let autocomplete = document.getElementById("autocomplete-list");
-
-  // Add a keyup event listener to the input element
-  input_1[0].addEventListener("input", function (e) {
-    // Clear any previous suggestions
-    autocomplete.innerHTML = "";
-    // Get the input value
-    let valueOne = this.value;
-    // Check if the value is not empty
-    if (valueOne) {
-      // Loop through the array of possible values
-      for (let i = 0; i < books.length; i++) {
-        // Check if the value matches the beginning of a book title
-        if (books[i].substr(0, valueOne.length).toLowerCase() === valueOne.toLowerCase()) {
+// Add a keyup event listener to the input element
+input_1[0].addEventListener("input", function (e) {
+  // Clear any previous suggestions
+  autocomplete.innerHTML = "";
+  // Get the input value
+  let valueOne = this.value;
+  // Check if the value is not empty
+  if (valueOne) {
+    // Loop through the array of possible values
+    for (let i = 0; i < books.length; i++) {
+      // Check if the value matches the beginning of a book title
+      if (books[i].substr(0, valueOne.length).toLowerCase() === valueOne.toLowerCase()) {
+        let matchingPart = books[i].substr(0, valueOne.length);
+        // Check if the matching part is longer than 2 characters
+        if (matchingPart.length > 2) {
           // Create a div element for each matching book title
           let div = document.createElement("div");
-          // Highlight the matching part in bold
-          div.innerHTML = "<strong>" + books[i].substr(0, valueOne.length) + "</strong>";
-          div.innerHTML += books[i].substr(valueOne.length);
+          let remainingPart = books[i].substr(valueOne.length);
+          div.innerHTML = "<strong>" + matchingPart + "</strong>" + remainingPart;
           // Add a hidden input field to store the book title
           div.innerHTML += "<input type='hidden' value='" + books[i] + "'>";
           // Add a click event listener to the div element
@@ -777,7 +778,8 @@ let books = [
             // Clear any previous suggestions
             autocomplete.innerHTML = "";
           });
-              autocomplete.appendChild(div);
+          autocomplete.appendChild(div);
+        }
       }
     }
   }
