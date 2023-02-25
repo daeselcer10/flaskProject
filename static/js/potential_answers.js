@@ -1,4 +1,5 @@
 // Code to display potential answers in a very minimal sort of way. By Dae Selcer, 2023.
+// Drew Pereli helped with the apostrophes
 // // Create an array of potential values
 
 let books = [
@@ -418,6 +419,7 @@ let books = [
 "Sophie's Choice",
 "Sophie's World",
 "Stardust",
+    "State of Wonder",
 "Stellaluna",
 "Steppenwolf",
 "Strange Case of Dr. Jekyll and Mr. Hyde",
@@ -774,7 +776,7 @@ input_1[0].addEventListener("input", function (e) {
           let remainingPart = books[i].substr(valueOne.length);
           div.innerHTML = "<strong>" + matchingPart + "</strong>" + remainingPart;
           // Add a hidden input field to store the book title
-          div.innerHTML += "<input type='hidden' value='" + books[i] + "'>";
+          div.innerHTML += `<input type="hidden" value="${books[i]}">`;
           // Add a click event listener to the div element
           div.addEventListener("click", function(e) {
             // Set the input value to the selected book title
