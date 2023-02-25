@@ -1,4 +1,5 @@
 // Code from sandarutharuneth, confetti-page, github
+// https://github.com/sandarutharuneth/confetti-page/blob/main/LICENSE
 // Edited by Dae Selcer
 
 let confetti = {

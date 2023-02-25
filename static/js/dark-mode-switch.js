@@ -5,7 +5,7 @@
  * Adapted by Dae Selcer
  */
 
-var darkSwitch = document.getElementById("darkSwitch");
+let darkSwitch = document.getElementById("darkSwitch");
 window.addEventListener("load", function () {
   if (darkSwitch) {
     initTheme();
@@ -27,7 +27,7 @@ window.addEventListener("load", function () {
  * @return {void}
  */
 function initTheme() {
-  var darkThemeSelected =
+  let darkThemeSelected =
     localStorage.getItem("darkSwitch") !== null &&
     localStorage.getItem("darkSwitch") === "dark";
   darkSwitch.checked = darkThemeSelected;
