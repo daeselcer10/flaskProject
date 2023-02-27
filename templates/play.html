@@ -30,6 +30,8 @@ window.onload = function() {
 	// store value in local storage
 	localStorage.setItem("counter", JSON.stringify(counter));
 
+    // update streak - removed from here, back in streak.js
+
 };
 
 // clear count used to go here
@@ -74,7 +76,7 @@ window.onload = function() {
     <!-- guesses displayed here-->
 <div class = "container">
 <p>You have made <strong><span id="guesses">0 </span></strong> today.</p>
-
+    <p><span id="streak"></span></p>
     <!-- DELETED BUTTON FROM HERE-->
 
 </div>
@@ -294,4 +296,6 @@ window.onload = function() {
 <script src="/static/js/guess_display.js"></script>
     <!-- potential answers-->
     <script src ="/static/js/potential_answers.js"></script>
+<!-- streak js - removed -->
+
 {% endblock %}

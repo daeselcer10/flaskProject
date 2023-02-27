@@ -26,7 +26,7 @@ class Ans:
 # list of answers in order
 ans = Ans([
     'lolita',
-    "howl's moving castle"
+    "othello"
 ])
 
 
