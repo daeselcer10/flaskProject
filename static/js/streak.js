@@ -21,7 +21,7 @@ if (streakLastGuess){
     const todayToday = new Date();
     if (breakStreak(breakLastGuessTimeStreak, todayToday)){
         streakCount = 0;
-    localStorage.setItem("myStreak", streakCount); // do i need to do this?
+    localStorage.setItem("myStreak", streakCount); // do I need to do this?
     console.log("Bye bye, streak!")
     document.getElementById("streak").innerHTML = streakCount;
     }
