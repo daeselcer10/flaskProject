@@ -14,10 +14,10 @@ localStorage.setItem("date_now", jsonDate_now);
 
 // Create a new variable for the date of the last guess - grab from local storage
 const streakLastGuess = localStorage.getItem("last_guess_date");
-// Get the streak count from localStorage or set it to zero if not found
-let streakCount = localStorage.getItem("streakCount") || 0;
+// Get the streak count from localStorage or set it to one if not found
+let streakCount = localStorage.getItem("streakCount") || 1;
 // Set a local storage item
-localStorage.setItem("myStreak", streakCount)
+localStorage.setItem("myStreak", JSON.stringify(streakCount))
 
 
 //function to break streak if gap of  > 1 day
@@ -54,16 +54,15 @@ window.onload = function() {
 	// store value in local storage
 	localStorage.setItem("counter", JSON.stringify(counter));
 
-    // update streak - removed from here, back in streak.js
 
     if (streakLastGuess) {
         const continueLastGuessStreak = new Date(streakLastGuess);
         const alsoTodayToday = new Date();
         if (continueStreak(continueLastGuessStreak, alsoTodayToday)) {
             streakCount++;
-            localStorage.setItem("myStreak", streakCount);
+            localStorage.setItem("myStreak", JSON.stringify(streakCount));
             console.log("Hurray! Let's add one to your streak.")
-            document.getElementById("streak").innerHTML = streakCount;
+            document.getElementById("streak").innerHTML = JSON.stringify(streakCount);
         } else {
             console.log("Continue streak funct returned false; either time to break the streak, or it's the same day")
         }
@@ -72,10 +71,10 @@ if (streakLastGuess){
     const breakLastGuessTimeStreak = new Date(streakLastGuess);
     const todayToday = new Date();
     if (breakStreak(breakLastGuessTimeStreak, todayToday)){
-        streakCount = 0;
-    localStorage.setItem("myStreak", streakCount); // do I need to do this?
+        streakCount = 1;
+    localStorage.setItem("myStreak", JSON.stringify(streakCount)); // do I need to do this?
     console.log("Bye bye, streak!")
-    document.getElementById("streak").innerHTML = streakCount;
+    document.getElementById("streak").innerHTML = JSON.stringify(streakCount);
     }
     else {
         console.log("The break streak function returned false; streak not broken.")
