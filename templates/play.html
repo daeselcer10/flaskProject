@@ -16,8 +16,7 @@ localStorage.setItem("date_now", jsonDate_now);
 const streakLastGuess = localStorage.getItem("last_guess_date");
 // Get the streak count from localStorage or set it to one if not found
 let streakCount = localStorage.getItem("streakCount") || 1;
-// Set a local storage item
-localStorage.setItem("myStreak", JSON.stringify(streakCount))
+// Set a local storage item for myStreak - removed from here
 
 
 //function to break streak if gap of  > 1 day
@@ -79,7 +78,12 @@ if (streakLastGuess){
     else {
         console.log("The break streak function returned false; streak not broken.")
     }
-}};
+}
+    document.getElementById("streak").firstChild.nodeValue = streakCount;
+
+    localStorage.setItem("myStreak", JSON.stringify(streakCount));
+
+};
 
 
 
@@ -169,7 +173,7 @@ if (streakLastGuess){
   <script> // interpolate guesses into the sharebox
    window.addEventListener('load', function() {
       document.getElementById('shared-guesses').innerText = counter.submit;
-      document.getElementById('sharebox').value = `I found the book on today's shelf in ${counter.submit} guesses! https://www.bookshelfthegame.com/play`;
+      document.getElementById('sharebox').value = `I found the book on today's shelf in ${counter.submit} guesses! My streak is currently: ${streakCount}. https://www.bookshelfthegame.com/play`;
     });
 
   </script>
