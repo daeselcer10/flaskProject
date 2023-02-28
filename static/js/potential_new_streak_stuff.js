@@ -14,14 +14,14 @@
      //localStorage.setItem("last_guess_date", today);
 
 const formForStreak = document.querySelector('form');
-const todayStreak = new Date().toUTCString();
-localStorage.setItem("todayStreak", todayStreak);
+const todayStreak = new Date();
+localStorage.setItem("todayStreak", todayStreak.toUTCString());
 
 formForStreak.addEventListener('submit', function(){
-    const streakTime = new Date().toUTCString();
-    localStorage.setItem("streakLastGuessDate", streakTime)
-    if (todayStreak !== streakTime){
-        localStorage.setItem("todayStreak", streakTime)
+    const streakTime = new Date();
+    localStorage.setItem("streakLastGuessDate", streakTime.toUTCString())
+    if (todayStreak.toDateString() !== streakTime.toDateString()){
+        localStorage.setItem("todayStreak", streakTime.toUTCString())
     } else {
         console.log("Do not update; user has already guessed today")
     }
