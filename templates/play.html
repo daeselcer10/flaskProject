@@ -10,13 +10,14 @@
 const date_now = new Date();
 const jsonDate_now = date_now.toJSON();
 localStorage.setItem("date_now", jsonDate_now);
+// stuff for setting streak stuff
 
 
 // Create a new variable for the date of the last guess - grab from local storage
-const streakLastGuess = localStorage.getItem("last_guess_date"); // remove
+const streakLastGuess = localStorage.getItem("todayStreak"); // change??
 // Get the streak count from localStorage or set it to one if not found
 let streakCount = localStorage.getItem("streakCount") || 1;
-// Set a local storage item for myStreak - removed from here
+
 
 
 //function to break streak if gap of  > 1 day
@@ -349,6 +350,6 @@ if (streakLastGuess){
 <script src="/static/js/guess_display.js"></script>
     <!-- potential answers-->
     <script src ="/static/js/potential_answers.js"></script>
-<!-- streak js - removed -->
-
+<!-- streak stuff -->
+    <script src ="/static/js/potential_new_streak_stuff.js"></script>
 {% endblock %}

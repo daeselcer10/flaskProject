@@ -14,11 +14,11 @@
      //localStorage.setItem("last_guess_date", today);
 
 const formForStreak = document.querySelector('form');
-const todayStreak = new Date().toDateString();
+const todayStreak = new Date().toUTCString();
 localStorage.setItem("todayStreak", todayStreak);
 
 formForStreak.addEventListener('submit', function(){
-    const streakTime = new Date().toDateString();
+    const streakTime = new Date().toUTCString();
     localStorage.setItem("streakLastGuessDate", streakTime)
     if (todayStreak !== streakTime){
         localStorage.setItem("todayStreak", streakTime)
