@@ -4,15 +4,6 @@
 // then everything else will work as i have it
 
 
-
-    // Check if last guess date is equal to today's date
-   // if (lastDayPlayed.toDateString() === today.toDateString()) {
-      // Do nothing as user has already guessed today
-
-   // Update last guess date only if it is different from today's date
-   //if (lastGuessDate.toDateString() !== today.toDateString()) {
-     //localStorage.setItem("last_guess_date", today);
-
 const formForStreak = document.querySelector('form');
 const todayStreak = new Date();
 localStorage.setItem("todayStreak", todayStreak.toUTCString());
