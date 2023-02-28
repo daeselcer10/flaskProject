@@ -10,10 +10,10 @@
 const date_now = new Date();
 const jsonDate_now = date_now.toJSON();
 localStorage.setItem("date_now", jsonDate_now);
-const dateOfStreaks = localStorage.getItem("datesOfStreak", "value"); // have to figure this damn thing out!!!
+
 
 // Create a new variable for the date of the last guess - grab from local storage
-const streakLastGuess = localStorage.getItem("last_guess_date");
+const streakLastGuess = localStorage.getItem("last_guess_date"); // remove
 // Get the streak count from localStorage or set it to one if not found
 let streakCount = localStorage.getItem("streakCount") || 1;
 // Set a local storage item for myStreak - removed from here
