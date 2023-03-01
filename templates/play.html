@@ -14,7 +14,7 @@ localStorage.setItem("date_now", jsonDate_now);
 
 
 // Create a new variable for the date of the last guess - grab from local storage
-const streakLastGuess = localStorage.getItem("todayStreak"); // change??
+const streakLastGuess = localStorage.getItem("streakLastGuessDate"); // change??
 // Get the streak count from localStorage or set it to one if not found
 let streakCount = localStorage.getItem("streakCount") || 1;
 
@@ -58,7 +58,7 @@ window.onload = function() {
     if (streakLastGuess) {
         const continueLastGuessStreak = new Date(streakLastGuess);
         const alsoTodayToday = new Date();
-        if (continueStreak(continueLastGuessStreak, alsoTodayToday)) {
+        if (continueStreak(alsoTodayToday, continueLastGuessStreak)) {
             streakCount++;
             localStorage.setItem("myStreak", JSON.stringify(streakCount));
             console.log("Hurray! Let's add one to your streak.")
@@ -70,7 +70,7 @@ window.onload = function() {
 if (streakLastGuess){
     const breakLastGuessTimeStreak = new Date(streakLastGuess);
     const todayToday = new Date();
-    if (breakStreak(breakLastGuessTimeStreak, todayToday)){
+    if (breakStreak(todayToday, breakLastGuessTimeStreak)){
         streakCount = 1;
     localStorage.setItem("myStreak", JSON.stringify(streakCount)); // do I need to do this?
     console.log("Bye bye, streak!")
@@ -110,18 +110,19 @@ if (streakLastGuess){
   <div class="card card-body">
       <p>1. The clues are collapsible. Click to reveal them. Look at Clue 1, then type a guess. Look at Clue 2, then type a guess.
       And so on and so forth. Your past guesses display under "Your Guesses So Far," right above the clues.<br>
-          2. Could you cheat? Sure. But why do that to yourself?<br>
+          2. The clues build on each other. Go in order. Could you cheat? Sure. But why do that to yourself? It's no fun.<br>
           3. If you type 6 or more characters, potential answer choices will display above the submit box. If you have five or fewer
           characters, potential answers will not display.<br>
           4. If a potential answer isn't displaying, ask yourself if you are forgetting (or adding!) an "A" or "The" at
           the beginning of the title.<br>
-      5. Spelling absolutely counts.<br>
-      6. But capitalization does not. Hurray!<br>
-      7. Do not use quotation marks. Apostrophes are fine.<br>
-      8. Include all punctuation.<br>
-      9. You have unlimited guesses.<br>
-      10. Answers will always be a book's full title. So "Left Hand Of Darkness" would be incorrect, but
+      5. Spelling absolutely counts. But capitalization does not. Hurray!<br>
+      6. Do not use quotation marks. Apostrophes are fine. Include all punctuation. <br>
+      7. You have unlimited guesses. If you have no idea after all 6 clues, see my suggestions under the 'About' tab.<br>
+          8. The books are, broadly, fiction. With some autobiographies and memoirs thrown in. Plays, novels, novellas -
+          all up for grabs.<br>
+      9. Answers will always be a book's full title. So "Left Hand Of Darkness" would be incorrect, but
       "The Left Hand Of Darkness" would be correct.<br>
+      10. Got more detailed questions? Use the nav bar and navigate to 'About.'<br>
   </div>
     </div>
 
