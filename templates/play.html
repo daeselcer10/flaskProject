@@ -63,6 +63,7 @@ window.onload = function() {
             localStorage.setItem("myStreak", JSON.stringify(streakCount));
             console.log("Hurray! Let's add one to your streak.")
             document.getElementById("streak").innerHTML = JSON.stringify(streakCount);
+            localStorage.setItem("streakLastGuessDate", todayStreak.toUTCString()); // this the new line - check!
         } else {
             console.log("Continue streak funct returned false; either time to break the streak, or it's the same day")
         }
