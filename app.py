@@ -26,7 +26,8 @@ class Ans:
 # list of answers in order
 ans = Ans([
     'lolita',
-    "othello"
+    "othello",
+    "sanditon"
 ])
 
 

@@ -14,7 +14,7 @@ localStorage.setItem("date_now", jsonDate_now);
 
 
 // Create a new variable for the date of the last guess - grab from local storage
-const streakLastGuess = localStorage.getItem("streakLastGuessDate"); // change??
+const streakLastGuess = localStorage.getItem("streakLastGuessDate");
 // Get the streak count from localStorage or set it to one if not found
 let streakCount = localStorage.getItem("streakCount") || 1;
 
@@ -63,7 +63,6 @@ window.onload = function() {
             localStorage.setItem("myStreak", JSON.stringify(streakCount));
             console.log("Hurray! Let's add one to your streak.")
             document.getElementById("streak").innerHTML = JSON.stringify(streakCount);
-            localStorage.setItem("streakLastGuessDate", todayStreak.toUTCString()); // this the new line - check!
         } else {
             console.log("Continue streak funct returned false; either time to break the streak, or it's the same day")
         }
