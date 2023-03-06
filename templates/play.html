@@ -125,7 +125,9 @@ if (streakLastGuess){
           all up for grabs.<br>
       9. Answers will always be a book's full title. So "Left Hand Of Darkness" would be incorrect, but
       "The Left Hand Of Darkness" would be correct.<br>
-      10. Got more detailed questions? Use the nav bar and navigate to 'About.'<br>
+          10. In an effort to be fair, your streak is the days you have *played* in a row, not the number of
+          games won in a row. Because what if you never heard of a specific book? Seems unfair to me.<br>
+      11. Got more detailed questions? Use the nav bar and navigate to 'About.'<br>
   </div>
     </div>
 
@@ -134,7 +136,7 @@ if (streakLastGuess){
     <!-- guesses displayed here-->
 <div class = "container">
 <p>You have made <strong><span id="guesses">0 </span></strong> today.</p>
-    <p>Your Bookshelf playing streak is: <strong><span id ="streak">0 </span></strong></p>
+    <p>Days played in a row: <strong><span id ="streak">0 </span></strong></p>
     <!-- DELETED BUTTON FROM HERE-->
 
 </div>
@@ -178,7 +180,7 @@ if (streakLastGuess){
   <script> // interpolate guesses into the sharebox
    window.addEventListener('load', function() {
       document.getElementById('shared-guesses').innerText = counter.submit;
-      document.getElementById('sharebox').value = `I found the book on today's shelf in ${counter.submit} guesses! My streak is currently: ${streakCount}. https://www.bookshelfthegame.com/play`;
+      document.getElementById('sharebox').value = `I found the book on today's shelf in ${counter.submit} guesses! My play streak is: ${streakCount}. https://www.bookshelfthegame.com/play`;
     });
 
   </script>
