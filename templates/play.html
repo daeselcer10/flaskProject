@@ -77,10 +77,10 @@ if (streakLastGuess){
     document.getElementById("streak").innerHTML = JSON.stringify(streakCount);
     }
     else {
-        streakCount++;
-        localStorage.setItem("myStreak", JSON.stringify(streakCount));
-        console.log("Hurray, let's add one to your streak!")
+        streakCount++
         document.getElementById("streak").innerHTML = JSON.stringify(streakCount);
+        localStorage.setItem("myStreak", JSON.stringify(streakCount));
+        console.log("Hurray, let's add one to your streak!");
     }
 }
     document.getElementById("streak").firstChild.nodeValue = streakCount;
