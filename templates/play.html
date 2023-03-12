@@ -28,7 +28,7 @@ function breakStreak (date1, date2) {
 }
 
 
-// function to continue streak if you are playing on the next day hurray - do i need this?
+// function to continue streak if you are playing on the next day hurray - not currently using
 function continueStreak (date1, date2) {
   return date1.getUTCFullYear() === date2.getUTCFullYear() + 1 ||
       date1.getUTCMonth () === date2.getUTCMonth() + 1 ||
@@ -54,25 +54,12 @@ window.onload = function() {
 	// store value in local storage
 	localStorage.setItem("counter", JSON.stringify(counter));
 
-// do i need this?
-    //if (streakLastGuess) {
-      //  const continueLastGuessStreak = new Date(streakLastGuess);
-        //const alsoTodayToday = new Date();
-        //if (continueStreak(alsoTodayToday, continueLastGuessStreak)) {
-          //  streakCount++;
-           // localStorage.setItem("myStreak", JSON.stringify(streakCount));
-           // console.log("Hurray! Let's add one to your streak.")
-           // document.getElementById("streak").innerHTML = JSON.stringify(streakCount);
-        //} else {
-          //  console.log("Continue streak funct returned false; either time to break the streak, or it's the same day")
-       // }
-   // }
 if (streakLastGuess){
     const breakLastGuessTimeStreak = new Date(streakLastGuess);
     const todayToday = new Date();
     if (breakStreak(todayToday, breakLastGuessTimeStreak)){
         streakCount = 0;
-    localStorage.setItem("myStreak", JSON.stringify(streakCount)); // do I need to do this?
+    localStorage.setItem("myStreak", JSON.stringify(streakCount));
     console.log("Bye bye, streak!")
     document.getElementById("streak").innerHTML = JSON.stringify(streakCount);
     }
@@ -82,10 +69,10 @@ if (streakLastGuess){
         localStorage.setItem("myStreak", JSON.stringify(streakCount));
         console.log("Hurray, let's add one to your streak!");
     }
-}
     document.getElementById("streak").firstChild.nodeValue = streakCount;
 
     localStorage.setItem("myStreak", JSON.stringify(streakCount));
+}
 
 };
 

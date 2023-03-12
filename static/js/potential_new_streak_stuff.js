@@ -7,18 +7,6 @@
 const formForStreak = document.querySelector('form');
 const todayStreak = new Date();
 
-// below is old stuff
-
-//formForStreak.addEventListener('submit', function(){
-   // const streakTime = new Date();
-    //if (todayStreak.toDateString() !== streakTime.toDateString()){
-      //  localStorage.setItem("streakLastGuessDate", todayStreak.toDateString());
-       // console.log("Updated streakLastGuessDate, user has not guessed today")
-    //} else {
-      //  console.log("Do not update; user has already guessed today")
-    //}
-//})
-
 formForStreak.addEventListener('submit', function(){
     const streakTime = new Date();
     const todayForStreak = new Date(todayStreak);

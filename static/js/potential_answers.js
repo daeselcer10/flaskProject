@@ -361,7 +361,7 @@ let books = [
 "Persepolis",
 "Persuasion",
 "Pet Sematary",
-"Peter Pan",
+"Peter Pan in Kensington Gardens",
 "Peyton Place",
 "Pippi Longstocking",
 "Piranesi",
