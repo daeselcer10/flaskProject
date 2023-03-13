@@ -10,30 +10,6 @@
 const date_now = new Date();
 const jsonDate_now = date_now.toJSON();
 localStorage.setItem("date_now", jsonDate_now);
-// stuff for setting streak stuff
-
-
-// Create a new variable for the date of the last guess - grab from local storage
-const streakLastGuess = localStorage.getItem("streakLastGuessDate");
-// Get the streak count from localStorage or set it to one if not found
-let streakCount = localStorage.getItem("streakCount") || 0;
-
-
-
-//function to break streak if gap of  > 1 day
-function breakStreak (date1, date2) {
-  return date1.getUTCFullYear() > date2.getUTCFullYear() + 1 ||
-      date1.getUTCMonth() > date2.getUTCMonth() + 1 ||
-      date1.getUTCDate() > date2.getUTCDate() + 1;
-}
-
-
-// function to continue streak if you are playing on the next day hurray - not currently using
-function continueStreak (date1, date2) {
-  return date1.getUTCFullYear() === date2.getUTCFullYear() + 1 ||
-      date1.getUTCMonth () === date2.getUTCMonth() + 1 ||
-      date1.getUTCDate() === date2.getUTCDate() + 1;
-}
 
 </script>
     <!-- js counter stuff needed on this page -->
@@ -54,32 +30,9 @@ window.onload = function() {
 	// store value in local storage
 	localStorage.setItem("counter", JSON.stringify(counter));
 
-if (streakLastGuess){
-    const breakLastGuessTimeStreak = new Date(streakLastGuess);
-    const todayToday = new Date();
-    if (breakStreak(todayToday, breakLastGuessTimeStreak)){
-        streakCount = 0;
-    localStorage.setItem("myStreak", JSON.stringify(streakCount));
-    console.log("Bye bye, streak!")
-    document.getElementById("streak").innerHTML = JSON.stringify(streakCount);
-    }
-    else {
-        streakCount++
-        document.getElementById("streak").innerHTML = JSON.stringify(streakCount);
-        localStorage.setItem("myStreak", JSON.stringify(streakCount));
-        console.log("Hurray, let's add one to your streak!");
-    }
-    document.getElementById("streak").firstChild.nodeValue = streakCount;
-
-    localStorage.setItem("myStreak", JSON.stringify(streakCount));
-}
+    // removed streak stuff from here
 
 };
-
-
-
-// clear count used to go here
-
 </script>
 
 
