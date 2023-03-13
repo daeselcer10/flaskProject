@@ -3,7 +3,7 @@
 // there is a new guess, i think.
 
 const formForStreak = document.querySelector('form');
-const todayStreak = new Date().toUTCString();
+const todayStreak = new Date().toISOString();
 
 formForStreak.addEventListener('submit', function(){
     const streakTime = new Date().toISOString;
