@@ -1,9 +1,8 @@
 
 // Use const for variables that don't change
-const formForStreak = document.querySelector('form');
+const formForStreak2 = document.querySelector('form');
 const todayStreak = new Date();
 
-// Use camelCase for variable names
 const streakLastGuessDate = localStorage.getItem("streakLastGuessDate");
 
 // Use numbers instead of strings for streak count

@@ -1,5 +1,6 @@
 // why does nothing work why lord why
-
+// definitely a problem here: if this works, it will update the streak every time that
+// there is a new guess, i think.
 
 const formForStreak = document.querySelector('form');
 const todayStreak = new Date().toUTCString();
