@@ -1,14 +1,7 @@
 
-// Use const for variables that don't change
-const formForStreak2 = document.querySelector('form');
-const todayStreak = new Date();
 
-const streakLastGuessDate = localStorage.getItem("streakLastGuessDate");
 
-// Use numbers instead of strings for streak count
-let streakCount = localStorage.getItem("myStreak") || 0;
-
-// Use one function to check if dates are consecutive or not
+// potential function to check if dates are consecutive
 function isConsecutive(date1, date2) {
   // Get the year, month and day of each date
   const year1 = date1.getUTCFullYear();
@@ -38,12 +31,36 @@ if (streakLastGuessDate) {
         // Reset the streak count to zero
         streakCount = 0;
         console.log("Bye bye, streak!");
-    }
+    }}
 
-    // Update the local storage with the new values
-    localStorage.setItem("myStreak", streakCount);
-    localStorage.setItem("streakLastGuessDate", todayStreak);
-
-    // Update the HTML element with the current streak count
-    document.getElementById("streak").innerHTML = streakCount;
+// one dude's idea from stack overflow
+function maintainStreak() {
+  let today = new Date();
+  today.setUTCHours(0);
+  today.setUTCMinutes(0);
+  today.setUTCSeconds(0);
+  today.setUTCMilliseconds(0);
+  let streakLength;
+  let streakEnd = localStorage.getItem("streakEnd");
+  if (streakEnd) {
+    streakEnd = new Date(streakEnd);
+    streakLength = Number(localStorage.getItem("streakLength"));
+    let yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    if (streakEnd.getTime() === yesterday.getTime()) {
+      streakEnd = today;
+      streakLength++;
+    } else if (streakEnd.getTime() >= today.getTime()) {
+      /* Game was already played today */
+      return false;
+    } else
+      streakEnd = undefined;
+  }
+  if (!streakEnd) {
+    streakEnd = today;
+    streakLength = 1;
+  }
+  localStorage.setItem("streakEnd", streakEnd.toISOString().substring(0, 10)); // what the heck?
+  localStorage.setItem("streakLength", streakLength);
+  return true;
 }

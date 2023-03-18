@@ -10,7 +10,7 @@
 const date_now = new Date();
 const jsonDate_now = date_now.toJSON();
 localStorage.setItem("date_now", jsonDate_now);
-
+// begin streak stuff
 // Create a new variable for the date of the last guess - grab from local storage
 const streakLastGuess = localStorage.getItem("streakLastGuessDate");
 // Get the streak count from localStorage or set it to one if not found
@@ -31,7 +31,6 @@ function continueStreak (date1, date2) {
 
  }
 
-
 </script>
     <!-- js counter stuff needed on this page -->
     <script type="text/javascript">
@@ -51,7 +50,7 @@ window.onload = function() {
 	// store value in local storage
 	localStorage.setItem("counter", JSON.stringify(counter));
 
-    // removed streak stuff from here
+    // streak stuff that runs when the window loads
 if (streakLastGuess){
     const breakLastGuessTimeStreak = new Date(streakLastGuess);
     const todayToday = new Date();
@@ -70,6 +69,7 @@ if (streakLastGuess){
 
     localStorage.setItem("myStreak", JSON.stringify(streakCount));
 }
+
 
 };
 </script>
