@@ -13,7 +13,7 @@ localStorage.setItem("date_now", jsonDate_now);
 // begin streak stuff
 // Create a new variable for the date of the last guess - grab from local storage
 const streakLastGuess = localStorage.getItem("streakLastGuessDate");
-// Get the streak count from localStorage or set it to one if not found
+// Get the streak count from localStorage or set it to zero if not found
 let streakCount = localStorage.getItem("streakCount") || 0;
 
 //function to break streak if gap of  > 1 day
@@ -59,18 +59,11 @@ if (streakLastGuess){
     localStorage.setItem("myStreak", JSON.stringify(streakCount));
     console.log("Bye bye, streak!")
     document.getElementById("streak").innerHTML = JSON.stringify(streakCount);
-    } else {
-        streakCount++
-        document.getElementById("streak").innerHTML = JSON.stringify(streakCount);
-        localStorage.setItem("myStreak", JSON.stringify(streakCount));
-        console.log("Hurray, let's add one to your streak!");
     }
     document.getElementById("streak").firstChild.nodeValue = streakCount;
 
     localStorage.setItem("myStreak", JSON.stringify(streakCount));
 }
-
-
 };
 </script>
 
